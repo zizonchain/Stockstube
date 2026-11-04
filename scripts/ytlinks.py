@@ -22,7 +22,8 @@ def extract(text):
     for m in URL_RE.finditer(t):
         u = m.group(0).rstrip('.,;:!*')
         if not u.lower().startswith('http'): u = 'https://' + u
-        p = urllib.parse.urlparse(u); q = urllib.parse.parse_qs(p.query)
+        try: p = urllib.parse.urlparse(u.replace('[','').replace(']','')); q = urllib.parse.parse_qs(p.query)
+        except ValueError: continue
         path = p.path; host = p.netloc.lower()
         ts = _t((q.get('t') or q.get('start') or [None])[0] or (re.search(r't=([0-9hms]+)', p.fragment) or [None, None])[1])
         vid = None; kind = 'video'

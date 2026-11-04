@@ -4,7 +4,7 @@ D = os.path.join(os.path.dirname(__file__), '..', 'data'); RAW = f'{D}/raw/youtu
 KEY = [l.split('=',1)[1].strip() for l in open(os.path.join(D, '..', '.env')) if l.startswith('YOUTUBE_API_KEY')][0]
 m = pd.read_parquet(f'{D}/mentions.parquet')
 m = m[~m.author.str.lower().isin(['automoderator','[deleted]'])]
-n = m.groupby('video_id').apply(lambda g: g[['source','author']].drop_duplicates().shape[0])
+m = m.assign(who=m.source + ':' + m.author); n = m.groupby('video_id').who.nunique()
 MIN = int(os.environ.get('MIN_RECS', 2))
 ids = sorted(n[n >= MIN].index, key=lambda v: -n[v])
 done = set()
