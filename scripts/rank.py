@@ -189,7 +189,7 @@ for v, r in E.iterrows():
                    related=[byid[b] for b in top]), open(f'{S}/v/{v}.json', 'w'), separators=(',', ':'))
 slim = lambda x: {k: x[k] for k in x if k not in ('ot',) or True}
 json.dump(idx, open(f'{S}/all.json', 'w'), separators=(',', ':'))
-top300 = [{k: v for k, v in x.items() if k != 'ot'} for x in idx[:300]]
+top300 = [{k: v for k, v in x.items() if k not in ('ot', 's', 'sp', 'e')} for x in idx[:300]]
 json.dump(top300, open(f'{S}/top.json', 'w'), separators=(',', ':'))
 src = M.groupby('community').size().sort_values(ascending=False)
 cms = collections.Counter(c for x in idx for c in x['cm'])
