@@ -70,7 +70,7 @@ async function video(id) {
   ${v.why ? `<h2>Why people recommend it</h2><p class="why">${esc(v.why)}</p>` : ''}
   ${v.moments && v.moments.length ? `<h2>Moments people pointed to</h2>${v.moments.map(m => `<div class="mention"><a href="#/v/${id}?t=${m.t}">${fmtDur(m.t)}</a> · ${m.n} mentions</div>`).join('')}` : ''}
   <h2>Mentions (${v.mentions.length})${v.critical ? ` · ${v.critical} critical` : ''}</h2>
-  ${v.mentions.map(m => `<div class="mention"><div class="ev">${esc(m.c)} · ${esc(m.d)} · <a href="${esc(m.u)}" target="_blank" rel="noopener">original</a></div>${esc(m.x)}</div>`).join('')}
+  ${v.mentions.map(m => `<div class="mention"><div class="ev">${esc(m.c)} · ${esc(m.d)}${m.cr ? ' · <span class="chip">critical</span>' : ''} · <a href="${esc(m.u)}" target="_blank" rel="noopener">original</a></div>${esc(m.x)}</div>`).join('')}
   ${v.others && v.others.length ? `<h2>Other uploads and clips</h2>${v.others.map(o => `<div class="mention"><a href="https://www.youtube.com/watch?v=${o.i}" target="_blank" rel="noopener">${esc(o.t)}</a> <span class="ev">${fmtDur(o.d)}${o.clip ? ' · clip' : ''}</span></div>`).join('')}` : ''}
   ${v.related.length ? `<h2>Related</h2><div class="grid">${v.related.map(r => card(r, lw)).join('')}</div>` : ''}</div>`;
   const p = $('#play'); if (p) p.onclick = () => { markWatched(id); $('#pl').innerHTML = `<iframe class="player" src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1${start ? '&start=' + start : ''}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="${esc(v.t)}"></iframe>` };

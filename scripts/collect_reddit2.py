@@ -17,6 +17,7 @@ def call(ep, params):
         try: r = C.get(B + ep, params=params)
         except httpx.HTTPError: time.sleep(20); continue
         took = time.time() - t
+        if os.environ.get('VERBOSE'): print('  call', ep, params.get(next(iter(k for k in params if k in ('url','body'))), ''), params['after'], params['before'], r.status_code, round(took, 1), r.text[:60].replace('\n', ' '), flush=True)
         reset = int(r.headers.get('x-ratelimit-reset', '30') or 30)
         if r.status_code == 429: time.sleep(reset + 5); continue
         try: d = r.json()
@@ -35,7 +36,7 @@ def window(raw, sub, kind, key, val, a, b, fields, depth=0):
     while True:
         d = call(f'{kind}/search', {'subreddit': sub, key: val, 'after': a, 'before': end, 'limit': 100, 'fields': fields})
         if d == 'HEAVY':
-            if b - a > 86400 * 4 and depth < 10:
+            if b - a > 86400 * 4 and depth < int(os.environ.get("MAXDEPTH", 5)):
                 m = (a + end) // 2
                 window(raw, sub, kind, key, val, a, m, fields, depth + 1); window(raw, sub, kind, key, val, m, end, fields, depth + 1)
                 break
@@ -45,7 +46,7 @@ def window(raw, sub, kind, key, val, a, b, fields, depth=0):
         end = d[-1]['created_utc']
     json.dump(out, open(f, 'w'))
     print(sub, kind, val, dt.datetime.utcfromtimestamp(a).date(), dt.datetime.utcfromtimestamp(b).date(), len(out), flush=True)
-now = int(time.time())
+now = 1793750400  # fixed end (2026-11-04 00:00 UTC) so window cache names are stable across restarts
 for sub in SUBS:
     raw = os.path.join(os.path.dirname(__file__), '..', 'data', 'raw', 'reddit', sub); os.makedirs(raw, exist_ok=True)
     if MODE == 'posts':
