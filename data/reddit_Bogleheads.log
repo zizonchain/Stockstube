@@ -19,3 +19,6 @@ Bogleheads comments youtube 1204329600 0
   now = dt.datetime.utcnow()
 /home/user/hallseat/stockstube/scripts/collect_reddit.py:43: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
+/home/user/hallseat/stockstube/scripts/collect_reddit.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+  fd = dt.datetime.utcfromtimestamp(first[0]['created_utc']) if first else dt.datetime(2008, 1, 1)
+Bogleheads first comment 2011-05-13

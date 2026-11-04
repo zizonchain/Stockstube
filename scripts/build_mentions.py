@@ -23,8 +23,8 @@ for f in glob.glob(f'{D}/raw/hn/*.json'):
             add('hn', 'HN', h['objectID'], f"https://news.ycombinator.com/item?id={h['objectID']}", h.get('author'), h['created_at_i'], h.get('comment_text'), 'comment', None, h.get('story_title'), h.get('story_id'))
         else:
             add('hn', 'HN', h['objectID'], f"https://news.ycombinator.com/item?id={h['objectID']}", h.get('author'), h['created_at_i'], h.get('story_text'), 'post', h.get('points'), h.get('title'), h['objectID'], h.get('url'))
-for f in glob.glob(f'{D}/raw/reddit/*/*.json'):
-    sub = f.split('/')[-2]; post = os.path.basename(f).startswith('posts')
+for f in glob.glob(f'{D}/raw/reddit/*/w_*.json'):
+    sub = f.split('/')[-2]; post = os.path.basename(f).startswith('w_posts')
     for h in json.load(open(f)):
         if post:
             add('reddit', f'r/{sub}', h['id'], f"https://www.reddit.com/r/{sub}/comments/{h['id']}/", h.get('author'), h['created_utc'], h.get('selftext'), 'post', h.get('score'), h.get('title'), h['id'], h.get('url'))
