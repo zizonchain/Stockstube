@@ -17,7 +17,7 @@ async function load() {
 function watched() { return LS.get('watched', []) } function hidden() { return LS.get('hidden', []) } function saved() { return LS.get('saved', []) }
 function markWatched(id) { const w = watched().filter(x => x.id !== id); w.unshift({id, at: Date.now()}); LS.set('watched', w.slice(0, 300)) }
 function toggle(k, id) { let a = LS.get(k, []); a = a.includes(id) ? a.filter(x => x !== id) : [id, ...a]; LS.set(k, a); return a.includes(id) }
-const TABS = [['foryou', 'For you'], ['top', 'Top'], ['red', 'Red days'], ['deep', 'Deep cuts'], ['durable', 'Durable'], ['longs', 'Longs'], ['saved', 'Saved']];
+const TABS = [['top', 'Top'], ['red', 'Red day remedies'], ['deep', 'Deep cuts'], ['durable', 'Durable'], ['longs', 'Longs'], ['saved', 'Saved'], ['foryou', 'For you']];
 async function forYou() {
   const w = watched().slice(0, 25), hid = new Set([...hidden(), ...watched().map(x => x.id)]);
   if (!w.length) return null;
@@ -52,7 +52,7 @@ async function home(tab) {
   else list = ALL.slice();
   list = applyFilters(list);
   const decs = META.decades.map(d => [d, d + 's']), coms = META.communities.map(c => [c[0], `${c[0]} (${c[1]})`]);
-  app.innerHTML = `<nav class="tabs">${TABS.map(([k, l]) => `<a href="#/${k}" class="${k === tab ? 'on' : ''}">${l}</a>`).join('')}</nav>
+  app.innerHTML = `<nav class="tabs">${TABS.map(([k, l]) => `<a href="#/${k}" class="t-${k}${k === tab ? ' on' : ''}">${l}</a>`).join('')}</nav>
   <div class="filters">${opt('cat', 'Category', META.categories.map(c => [c, c]))}${opt('dec', 'Decade of event', decs)}${opt('com', 'Community', coms)}${opt('len', 'Length', [['s', 'Under 20 min'], ['m', '20 to 60 min'], ['l', 'Over 60 min']])}</div>
   ${list.length ? `<div class="grid">${list.slice(0, shown).map(v => card(v, w)).join('')}</div>${list.length > shown ? `<p style="text-align:center"><button class="more" id="more">Show more (${list.length - shown})</button></p>` : ''}` : `<p class="empty">Nothing here yet.</p>`}`;
   app.querySelectorAll('select').forEach(s => s.onchange = () => { state[s.dataset.f] = s.value; shown = 60; route() });
@@ -98,7 +98,7 @@ async function route() {
   if (h.startsWith('v/')) return video(h.slice(2));
   document.title = 'StocksTube';
   if (h === 'about') return about();
-  return home(TABS.some(t => t[0] === h) ? h : 'foryou');
+  return home(TABS.some(t => t[0] === h) ? h : 'top');
 }
 window.addEventListener('hashchange', route);
 load().then(route).catch(e => { app.innerHTML = `<p class="empty">Could not load data. Run python build.py first.</p>` });
