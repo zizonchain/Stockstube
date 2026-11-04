@@ -50,7 +50,7 @@ now = 1793750400  # fixed end (2026-11-04 00:00 UTC) so window cache names are s
 for sub in SUBS:
     raw = os.path.join(os.path.dirname(__file__), '..', 'data', 'raw', 'reddit', sub); os.makedirs(raw, exist_ok=True)
     if MODE == 'posts':
-        for v in ['https://www.youtube.com', 'https://youtu.be', 'https://youtube.com', 'https://m.youtube.com']:
+        for v in ['https://www.youtube.com', 'https://youtu.be']:  # bare and m. prefixes gave 23 of 1,233 posts on r/SecurityAnalysis
             window(raw, sub, 'posts', 'url', v, 1136073600, now, 'id,author,title,url,selftext,created_utc,score')
     else:
         for y in range(2026, 2007, -1):
