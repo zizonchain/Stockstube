@@ -35,12 +35,17 @@ def window(raw, sub, kind, key, val, a, b, fields, depth=0):
     out, end = [], b
     while True:
         d = call(f'{kind}/search', {'subreddit': sub, key: val, 'after': a, 'before': end, 'limit': 100, 'fields': fields})
+        if d == 'HEAVY' and not out:
+            for _ in range(2):  # the server is often just busy: retry before splitting
+                time.sleep(45)
+                d = call(f'{kind}/search', {'subreddit': sub, key: val, 'after': a, 'before': end, 'limit': 100, 'fields': fields})
+                if d != 'HEAVY': break
         if d == 'HEAVY':
             if b - a > 86400 * 4 and depth < int(os.environ.get("MAXDEPTH", 5)):
                 m = (a + end) // 2
                 window(raw, sub, kind, key, val, a, m, fields, depth + 1); window(raw, sub, kind, key, val, m, end, fields, depth + 1)
                 break
-            open(os.path.join(raw, 'giveup_v2.log'), 'a').write(f'{kind} {val} {a} {end}\n'); break
+            open(os.path.join(raw, 'giveup_v2.log'), 'a').write(f'{kind} {val} {a} {end}\n'); return  # not cached, retried next run
         out += d
         if len(d) < 100: break
         end = d[-1]['created_utc']
