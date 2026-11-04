@@ -17,7 +17,7 @@ async function load() {
 function watched() { return LS.get('watched', []) } function hidden() { return LS.get('hidden', []) } function saved() { return LS.get('saved', []) }
 function markWatched(id) { const w = watched().filter(x => x.id !== id); w.unshift({id, at: Date.now()}); LS.set('watched', w.slice(0, 300)) }
 function toggle(k, id) { let a = LS.get(k, []); a = a.includes(id) ? a.filter(x => x !== id) : [id, ...a]; LS.set(k, a); return a.includes(id) }
-const TABS = [['foryou', 'For you'], ['top', 'Top'], ['deep', 'Deep cuts'], ['durable', 'Durable'], ['longs', 'Longs'], ['saved', 'Saved']];
+const TABS = [['foryou', 'For you'], ['top', 'Top'], ['red', 'Red days'], ['deep', 'Deep cuts'], ['durable', 'Durable'], ['longs', 'Longs'], ['saved', 'Saved']];
 async function forYou() {
   const w = watched().slice(0, 25), hid = new Set([...hidden(), ...watched().map(x => x.id)]);
   if (!w.length) return null;
@@ -46,6 +46,7 @@ async function home(tab) {
   if (tab === 'foryou') { list = await forYou(); if (!list || !list.length) { list = ALL.slice(); note = watched().length ? '' : '' } }
   else if (tab === 'deep') list = ALL.filter(v => v.r >= 3 && v.v < 250000).sort((a, b) => b.dc - a.dc);
   else if (tab === 'durable') list = ALL.filter(v => v.ny >= 5);
+  else if (tab === 'red') list = ALL.filter(v => v.rd);
   else if (tab === 'longs') list = ALL.filter(v => v.d >= 3600);
   else if (tab === 'saved') { const s = saved(), m = new Map(ALL.map(v => [v.i, v])); list = s.map(id => m.get(id)).filter(Boolean) }
   else list = ALL.slice();
@@ -91,7 +92,7 @@ function about() {
   <p>These are videos community members recommended. They are not endorsements and not investment advice.</p>
   <p>Your watch history, saved and hidden videos stay in this browser. There are no accounts and no tracking.</p></div>`;
 }
-let qt; $('#q').addEventListener('input', e => { clearTimeout(qt); qt = setTimeout(() => { state.q = e.target.value; shown = 60; const h = location.hash.slice(2).split('?')[0]; if (state.q && !['top', 'deep', 'durable', 'longs'].includes(h)) location.hash = '#/top'; else route() }, 150) });
+let qt; $('#q').addEventListener('input', e => { clearTimeout(qt); qt = setTimeout(() => { state.q = e.target.value; shown = 60; const h = location.hash.slice(2).split('?')[0]; if (state.q && !['top', 'deep', 'durable', 'longs', 'red'].includes(h)) location.hash = '#/top'; else route() }, 150) });
 async function route() {
   const h = location.hash.slice(2).split('?')[0];
   if (h.startsWith('v/')) return video(h.slice(2));

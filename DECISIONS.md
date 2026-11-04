@@ -15,3 +15,4 @@
 - Merge tolerance is 25% duration difference when the in-session labels gave two uploads the identical clean title (trimmed re-uploads of the same lecture, such as Peter Lynch 1994); otherwise 10%.
 - Reddit v2: after r/SecurityAnalysis, only the www.youtube.com and youtu.be url prefixes are queried (youtube.com and m.youtube.com added 23 of 1,233 posts there), to fit the night.
 - Self-promotion (in-session): Reddit link posts from one or two accounts repeatedly posting the same small channel (Hustle Hub, Andrew explains money, a 'price prediction' stock video) are labelled self_promotion and excluded, alongside the automatic username-to-channel and 3+-videos rules.
+- Red days tab: a labelled set (data/labels/red_days.txt) of videos that help an investor through a falling market: temperament during declines plus the history of crashes and recoveries. Crash predictions and bubble-calling are excluded. Sorted by the normal score.
