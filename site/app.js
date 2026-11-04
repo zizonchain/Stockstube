@@ -44,7 +44,7 @@ async function home(tab) {
   let list, note = '';
   const w = new Set(watched().map(x => x.id));
   if (tab === 'foryou') { list = await forYou(); if (!list || !list.length) { list = ALL.slice(); note = watched().length ? '' : '' } }
-  else if (tab === 'deep') list = ALL.filter(v => v.r >= 3).sort((a, b) => b.dc - a.dc);
+  else if (tab === 'deep') list = ALL.filter(v => v.r >= 3 && v.v < 250000).sort((a, b) => b.dc - a.dc);
   else if (tab === 'durable') list = ALL.filter(v => v.ny >= 5);
   else if (tab === 'longs') list = ALL.filter(v => v.d >= 3600);
   else if (tab === 'saved') { const s = saved(), m = new Map(ALL.map(v => [v.i, v])); list = s.map(id => m.get(id)).filter(Boolean) }

@@ -175,7 +175,7 @@ E['ct'] = [clean_title(v, r) for v, r in E.iterrows()]; E['catg'] = [cat(v, r) f
 E = E[E.catg != 'Other']  # film clips, pitches and gags people link in passing; see DECISIONS.md
 for v, r in E.iterrows():
     idx.append(dict(i=v, t=r.ct, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], ny=int(r.years), s=round(r.score, 2), dc=round(r.deep, 3),
-                    ev=L(v).get('event_year'), sp=', '.join(L(v).get('speakers') or []), e=L(v).get('event'), cm=r.cmlist, ot=r.title))
+                    ev=L(v).get('event_year'), v=int(r.views), sp=', '.join(L(v).get('speakers') or []), e=L(v).get('event'), cm=r.cmlist, ot=r.title))
 byid = {x['i']: x for x in idx}
 childs = collections.defaultdict(list)
 for c, (p, k) in parent.items(): childs[p].append((c, k))

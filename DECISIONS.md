@@ -9,3 +9,4 @@
 - Entries the in-session review put in category Other (film clips, sketches, a pitch video, a mock interview) are dropped from the site: people link them in passing, not as investing recommendations.
 - Related: shared threads + shared recommenders + same speaker, padded to 12 with the top entries of the same category when the graph is sparse.
 - Merge rule adds a title check (token-set ratio >= 60 on clean titles): same speakers + show + year alone wrongly merged two All-In episodes.
+- Deep cuts: the brief's recommenders / log10(views+10) alone just reproduced Top (log10 compresses views too much). Added a cap: under 250,000 views.
