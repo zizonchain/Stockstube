@@ -1,10 +1,8 @@
 # PROGRESS
-Spend: $0. YouTube quota: 906 units (videos.list only).
+Spend: $0. YouTube quota: 911 units (videos.list only).
 ## Done
-- HN complete via Algolia (data/raw/hn). Reddit partial: r/ValueInvesting comments 2014 to 2020-03 (data/raw/reddit).
-- Metadata for all 45,206 ids with 2+ recommenders (data/raw/youtube).
-- In-session labels for 2,096 candidates (data/labels). Summaries for top 30.
-- Site in site/, data in site/data, zip on About. python build.py rebuilds.
-- MORNING_REPORT.md written.
+- HN complete (Algolia). Reddit link posts: r/SecurityAnalysis, r/ValueInvesting complete; r/investing, r/Bogleheads partial. r/ValueInvesting comments 2014 to 2020-03.
+- Metadata for all 45,361 ids with 2+ recommenders. In-session labels for 2,242 candidates (data/labels). Summaries for top 100. Stance reviewed.
+- Site in site/, python build.py rebuilds. MORNING_REPORT.md final.
 ## Resume
-- Reddit: scripts/run_reddit.sh comments <subs...>, then posts. It skips cached windows. Then python build.py --fetch, label new candidates, rerun.
+- python3 -I scripts/collect_reddit2.py posts <subs>; then comments <subs>. Then python build.py --fetch, python3 -I scripts/new_candidates.py, label in data/labels/batch_NNN.txt, python3 -I scripts/labels_from_tsv.py, python3 -I scripts/rank.py.
