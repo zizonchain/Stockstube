@@ -8,7 +8,8 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '
 const fmtDur = s => { if (!s) return ''; const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = s % 60; return (h ? h + ':' + String(m).padStart(2, '0') : m) + ':' + String(x).padStart(2, '0') };
 const thumb = id => `<img loading="lazy" alt="" src="https://i.ytimg.com/vi/${id}/hq2.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'">`;
 const years = v => v.y[0] === v.y[1] ? v.y[0] : `${v.y[0]} to ${v.y[1]}`;
-const evidence = v => `${v.r} ${v.r === 1 ? 'person' : 'people'} · ${v.n} ${v.n === 1 ? 'community' : 'communities'} · ${years(v)}`;
+const fmtViews = n => n >= 1e9 ? (n / 1e9).toFixed(1).replace(/\.0$/, '') + 'B' : n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M' : n >= 1e3 ? Math.round(n / 1e3) + 'K' : String(n);
+const evidence = v => `${fmtViews(v.v || 0)} views${v.u ? ` · ${v.u}` : ''}`;
 async function getJSON(u) { const r = await fetch(u); if (!r.ok) throw new Error(u + ' ' + r.status); return r.json() }
 async function load() {
   META = await getJSON('data/meta.json'); ALL = await getJSON('data/top.json');

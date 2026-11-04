@@ -179,7 +179,7 @@ STRICT = {l.strip() for l in open(f'{D}/labels/strict_out.txt') if l.strip() and
 E = E[~E.index.isin(STRICT)]  # strict investing-only rule, see DECISIONS.md  # film clips, pitches and gags people link in passing; see DECISIONS.md
 for v, r in E.iterrows():
     idx.append(dict(i=v, t=r.ct, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], ny=int(r.years), s=round(r.score, 2), dc=round(r.deep, 3),
-                    ev=L(v).get('event_year'), v=int(r.views), sp=', '.join(L(v).get('speakers') or []), e=L(v).get('event'), cm=r.cmlist, ot=r.title, **({'rd': 1} if v in RED else {})))
+                    ev=L(v).get('event_year'), v=int(r.views), sp=', '.join(L(v).get('speakers') or []), e=L(v).get('event'), cm=r.cmlist, ot=r.title, u=int(str(r.uploaded)[:4]) if str(r.uploaded)[:4].isdigit() else None, **({'rd': 1} if v in RED else {})))
 byid = {x['i']: x for x in idx}
 childs = collections.defaultdict(list)
 for c, (p, k) in parent.items(): childs[p].append((c, k))
@@ -192,7 +192,7 @@ for v, r in E.iterrows():
     top = [b for _, b in sorted(rel[v], reverse=True) if b in byid][:12]
     if len(top) < 12:  # pad with the strongest entries of the same category
         top += [x['i'] for x in idx if x['c'] == r.catg and x['i'] != v and x['i'] not in top][:12 - len(top)]
-    json.dump(dict(i=v, t=r.ct, ot=r.title, ch=r.channel, up=r.uploaded, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], embed=bool(r.embeddable),
+    json.dump(dict(i=v, t=r.ct, ot=r.title, ch=r.channel, up=r.uploaded, v=int(r.views), u=int(str(r.uploaded)[:4]) if str(r.uploaded)[:4].isdigit() else None, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], embed=bool(r.embeddable),
                    why=L(v).get('why'), critical=int(crit_n.get(v, 0)), mentions=ms[:60], moments=moments(v),
                    others=[dict(i=c, t=agg.at[c, 'title'], d=int(agg.at[c, 'duration']), clip=k == 'clip') for c, k in childs[v]],
                    related=[byid[b] for b in top]), open(f'{S}/v/{v}.json', 'w'), separators=(',', ':'))
@@ -212,6 +212,7 @@ pub = REC[REC.entry.isin(E.index)][['source', 'community', 'item_id', 'permalink
 pub['who'] = pub.who.map(h); pub['text'] = pub.text.map(excerpt); pub = pub.rename(columns={'who': 'author_hash'})
 buf = io.BytesIO()
 with zipfile.ZipFile(f'{S}/stockstube-data.zip', 'w', zipfile.ZIP_DEFLATED) as z:
-    z.writestr('ranked.json', json.dumps(idx)); z.writestr('videos.csv', E.drop(columns=['cmlist', 'description']).to_csv()); z.writestr('mentions.csv', pub.to_csv(index=False))
-    z.writestr('README.txt', 'StocksTube data. Usernames are salted SHA-256 hashes. Excerpts are capped at 200 characters; follow permalinks for originals. Not investment advice.')
+    YT = ['title', 'channel', 'uploaded', 'duration', 'views', 'embeddable', 'description']  # YouTube API data: not redistributed (YouTube terms)
+    z.writestr('ranked.json', json.dumps([{k: x[k] for k in x if k not in ('ot', 'v', 'u', 'd')} for x in idx])); z.writestr('videos.csv', E.drop(columns=['cmlist'] + [c for c in YT if c in E.columns]).to_csv()); z.writestr('mentions.csv', pub.to_csv(index=False))
+    z.writestr('README.txt', 'StocksTube data. YouTube metadata (original titles, channels, views, durations, upload dates) is left out because YouTube terms do not allow redistributing it; every record has the video id. Usernames are salted SHA-256 hashes. Excerpts are capped at 200 characters; follow permalinks for originals. Not investment advice.')
 print('entries', len(idx), 'labelled', int(E.labelled.sum()), 'merges', len(merges), 'top size KB', os.path.getsize(f'{S}/top.json') // 1024)
