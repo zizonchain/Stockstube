@@ -1,0 +1,19 @@
+/home/user/hallseat/stockstube/scripts/collect_reddit.py:39: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  now = dt.datetime.utcnow()
+Bogleheads comments youtube 1199145600 0
+Bogleheads comments youtu.be 1199145600 0
+Bogleheads comments youtube 1201824000 0
+Bogleheads comments youtube 1203076800 0
+Bogleheads comments youtube 1201824000 0
+Bogleheads comments youtu.be 1201824000 0
+Bogleheads comments youtube 1204329600 0
+Bogleheads comments youtube 1205668800 0
+Bogleheads comments youtube 1206003600 0
+Bogleheads comments youtube 1205668800 0
+Bogleheads comments youtube 1206338400 0
+Bogleheads comments youtube 1206673200 0
+Bogleheads comments youtube 1206338400 0
+Bogleheads comments youtube 1205668800 0
+Bogleheads comments youtube 1204329600 0
+/home/user/hallseat/stockstube/scripts/collect_reddit.py:43: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  now = dt.datetime.utcnow()
