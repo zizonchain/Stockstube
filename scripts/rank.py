@@ -81,6 +81,7 @@ agg['relevant'] = [lr if lr is not None else (rr and inv_comm.get(v, 0) > 0) for
 STRICT = os.environ.get('STRICT', '1') == '1'  # unlabelled videos only from investing subreddits are trusted less
 agg['labelled'] = agg.label_rel.notna()
 
+def L(v): return labels.get(v) or {}
 # ---- merges (same speakers+event+year from labels, durations within 10%; much shorter -> clip)
 def key(vid):
     l = labels.get(vid) or {}
@@ -99,6 +100,7 @@ for k, vids in groups.items():
     for v in vids:
         if v == canon: continue
         d0, d1 = agg.at[v, 'duration'], agg.at[canon, 'duration']
+        if fuzz.token_set_ratio(L(v).get('clean_title', ''), L(canon).get('clean_title', '')) < 60: continue  # same show, different episode
         if d1 and abs(d0 - d1) / max(d0, d1) <= 0.10: parent[v] = (canon, 'duplicate')
         elif d0 < 0.5 * d1: parent[v] = (canon, 'clip')
         else: continue
@@ -170,6 +172,7 @@ def cat(v, row):
     return 'Other'
 idx, built = [], dt.date.today().isoformat()
 E['ct'] = [clean_title(v, r) for v, r in E.iterrows()]; E['catg'] = [cat(v, r) for v, r in E.iterrows()]
+E = E[E.catg != 'Other']  # film clips, pitches and gags people link in passing; see DECISIONS.md
 for v, r in E.iterrows():
     idx.append(dict(i=v, t=r.ct, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], ny=int(r.years), s=round(r.score, 2), dc=round(r.deep, 3),
                     ev=L(v).get('event_year'), sp=', '.join(L(v).get('speakers') or []), e=L(v).get('event'), cm=r.cmlist, ot=r.title))
@@ -182,7 +185,9 @@ for v, r in E.iterrows():
     for _, m in mm.iterrows():
         if m.who in seen: continue
         seen.add(m.who); ms.append(dict(c=m.community, d=str(m.created)[:10], u=m.permalink, x=excerpt(m.text), cr=bool(m.critical)))
-    top = [b for _, b in sorted(rel[v], reverse=True)[:12]]
+    top = [b for _, b in sorted(rel[v], reverse=True) if b in byid][:12]
+    if len(top) < 12:  # pad with the strongest entries of the same category
+        top += [x['i'] for x in idx if x['c'] == r.catg and x['i'] != v and x['i'] not in top][:12 - len(top)]
     json.dump(dict(i=v, t=r.ct, ot=r.title, ch=r.channel, up=r.uploaded, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], embed=bool(r.embeddable),
                    why=L(v).get('why'), critical=int(crit_n.get(v, 0)), mentions=ms[:60], moments=moments(v),
                    others=[dict(i=c, t=agg.at[c, 'title'], d=int(agg.at[c, 'duration']), clip=k == 'clip') for c, k in childs[v]],

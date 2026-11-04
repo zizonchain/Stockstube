@@ -91,7 +91,7 @@ function about() {
   <p>These are videos community members recommended. They are not endorsements and not investment advice.</p>
   <p>Your watch history, saved and hidden videos stay in this browser. There are no accounts and no tracking.</p></div>`;
 }
-let qt; $('#q').addEventListener('input', e => { clearTimeout(qt); qt = setTimeout(() => { state.q = e.target.value; shown = 60; if (location.hash.startsWith('#/v/') || location.hash === '#/about') location.hash = '#/top'; else route() }, 150) });
+let qt; $('#q').addEventListener('input', e => { clearTimeout(qt); qt = setTimeout(() => { state.q = e.target.value; shown = 60; const h = location.hash.slice(2).split('?')[0]; if (state.q && !['top', 'deep', 'durable', 'longs'].includes(h)) location.hash = '#/top'; else route() }, 150) });
 async function route() {
   const h = location.hash.slice(2).split('?')[0];
   if (h.startsWith('v/')) return video(h.slice(2));

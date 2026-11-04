@@ -6,3 +6,6 @@
 - Thumbnail: hq2.jpg (YouTube's 50% still; hq1/hq3 are 25%/75%). Checked it exists on sample ids; site falls back to hqdefault.jpg on error.
 - Recommender = distinct (source, author). AutoModerator and [deleted] dropped from counting entirely (simpler than once-per-thread; [deleted] is rare in these API pulls).
 - Arctic Shift: switched to 4s pacing, 30s waits on throttle, monthly windows, comments for all subs first, then link posts. Giveups logged per subreddit.
+- Entries the in-session review put in category Other (film clips, sketches, a pitch video, a mock interview) are dropped from the site: people link them in passing, not as investing recommendations.
+- Related: shared threads + shared recommenders + same speaker, padded to 12 with the top entries of the same category when the graph is sparse.
+- Merge rule adds a title check (token-set ratio >= 60 on clean titles): same speakers + show + year alone wrongly merged two All-In episodes.
