@@ -945,29 +945,6 @@
 "ot": "Why Bad Economic News Doesn't Always Hurt Stocks"
 },
 {
-"i": "IyoGdwVIwWw",
-"t": "Sam Bankman-Fried at the DealBook Summit after FTX's collapse",
-"d": 4438,
-"c": "Interview or conversation",
-"r": 8,
-"n": 1,
-"y": [
-2022,
-2022
-],
-"ny": 1,
-"s": 8.0,
-"dc": 1.293,
-"ev": 2022,
-"v": 1536361,
-"sp": "Sam Bankman-Fried, Andrew Ross Sorkin",
-"e": "DealBook Summit",
-"cm": [
-"HN"
-],
-"ot": "Sam Bankman-Fried Interviewed Live About the Collapse of FTX"
-},
-{
 "i": "1FwgCRIS0Wg",
 "t": "Ben Felix \u00b7 The 2.7% rule for retirement spending",
 "d": 792,
@@ -989,29 +966,6 @@
 "HN"
 ],
 "ot": "The 2.7% Rule for Retirement Spending"
-},
-{
-"i": "Wehsz38P74g",
-"t": "Why New York's Billionaires' Row is half empty",
-"d": 1718,
-"c": "Explainer",
-"r": 7,
-"n": 1,
-"y": [
-2021,
-2023
-],
-"ny": 3,
-"s": 7.7,
-"dc": 0.958,
-"ev": null,
-"v": 20421579,
-"sp": "",
-"e": "The B1M",
-"cm": [
-"HN"
-],
-"ot": "Why New York\u2019s Billionaires\u2019 Row Is Half Empty"
 },
 {
 "i": "B_nGEj8wIP0",
@@ -1058,6 +1012,29 @@
 "HN"
 ],
 "ot": "Cryptocurrencies: Last Week Tonight with John Oliver (HBO)"
+},
+{
+"i": "Wehsz38P74g",
+"t": "Why New York's Billionaires' Row is half empty",
+"d": 1718,
+"c": "Explainer",
+"r": 7,
+"n": 1,
+"y": [
+2021,
+2023
+],
+"ny": 3,
+"s": 7.7,
+"dc": 0.958,
+"ev": null,
+"v": 20421579,
+"sp": "",
+"e": "The B1M",
+"cm": [
+"HN"
+],
+"ot": "Why New York\u2019s Billionaires\u2019 Row Is Half Empty"
 },
 {
 "i": "VI_riscmviI",
@@ -1107,29 +1084,6 @@
 "ot": "RSA ANIMATE: Crises of Capitalism"
 },
 {
-"i": "1ts5wJ6OfzA",
-"t": "Money & Macro \u00b7 The big picture behind Trump's tariffs",
-"d": 1436,
-"c": "Explainer",
-"r": 7,
-"n": 1,
-"y": [
-2025,
-2026
-],
-"ny": 2,
-"s": 7.35,
-"dc": 1.043,
-"ev": 2025,
-"v": 5113263,
-"sp": "",
-"e": "Money & Macro",
-"cm": [
-"HN"
-],
-"ot": "Why Trump's tariff chaos actually makes sense (big picture)"
-},
-{
 "i": "3x1b_S6Qp2Q",
 "t": "Vitalik Buterin \u00b7 Lex Fridman Podcast",
 "d": 5704,
@@ -1153,27 +1107,27 @@
 "ot": "Vitalik Buterin: Ethereum, Cryptocurrency, and the Future of Money | Lex Fridman Podcast #80"
 },
 {
-"i": "vS6HEes8daw",
-"t": "SmarterEveryDay \u00b7 The problem with capitalism",
-"d": 3331,
+"i": "1ts5wJ6OfzA",
+"t": "Money & Macro \u00b7 The big picture behind Trump's tariffs",
+"d": 1436,
 "c": "Explainer",
 "r": 7,
 "n": 1,
 "y": [
-2026,
+2025,
 2026
 ],
-"ny": 1,
-"s": 7.0,
-"dc": 1.082,
-"ev": null,
-"v": 2929336,
-"sp": "Destin Sandlin",
-"e": null,
+"ny": 2,
+"s": 7.35,
+"dc": 1.043,
+"ev": 2025,
+"v": 5113263,
+"sp": "",
+"e": "Money & Macro",
 "cm": [
 "HN"
 ],
-"ot": "The PROBLEM with Capitalism - Smarter Every Day 316"
+"ot": "Why Trump's tariff chaos actually makes sense (big picture)"
 },
 {
 "i": "A5w-dEgIU1M",
@@ -1199,6 +1153,29 @@
 "ot": "The Equation That Beat Wall Street"
 },
 {
+"i": "vS6HEes8daw",
+"t": "SmarterEveryDay \u00b7 The problem with capitalism",
+"d": 3331,
+"c": "Explainer",
+"r": 7,
+"n": 1,
+"y": [
+2026,
+2026
+],
+"ny": 1,
+"s": 7.0,
+"dc": 1.082,
+"ev": null,
+"v": 2929336,
+"sp": "Destin Sandlin",
+"e": null,
+"cm": [
+"HN"
+],
+"ot": "The PROBLEM with Capitalism - Smarter Every Day 316"
+},
+{
 "i": "NPOHf20slZg",
 "t": "Coffeezilla \u00b7 A $30M AI startup and a hidden scam",
 "d": 1031,
@@ -1220,6 +1197,29 @@
 "HN"
 ],
 "ot": "$30,000,000 AI Is Hiding a Scam"
+},
+{
+"i": "IyoGdwVIwWw",
+"t": "Sam Bankman-Fried at the DealBook Summit after FTX's collapse",
+"d": 4438,
+"c": "Interview or conversation",
+"r": 7,
+"n": 1,
+"y": [
+2022,
+2022
+],
+"ny": 1,
+"s": 7.0,
+"dc": 1.131,
+"ev": 2022,
+"v": 1536361,
+"sp": "Sam Bankman-Fried, Andrew Ross Sorkin",
+"e": "DealBook Summit",
+"cm": [
+"HN"
+],
+"ot": "Sam Bankman-Fried Interviewed Live About the Collapse of FTX"
 },
 {
 "i": "zTFhnpf-IE0",
@@ -1361,29 +1361,6 @@
 "ot": "1. Introduction for 15.S12 Blockchain and Money, Fall 2018"
 },
 {
-"i": "1-TZqOsVCNM",
-"t": "Naval Ravikant \u00b7 How to Get Rich (full)",
-"d": 12937,
-"c": "Interview or conversation",
-"r": 6,
-"n": 1,
-"y": [
-2020,
-2023
-],
-"ny": 3,
-"s": 6.6,
-"dc": 0.84,
-"ev": 2019,
-"v": 13948285,
-"sp": "Naval Ravikant",
-"e": null,
-"cm": [
-"HN"
-],
-"ot": "How to Get Rich"
-},
-{
 "i": "KZYqL79GDXU",
 "t": "Sam Bankman-Fried and Matt Levine on making money in crypto \u00b7 Odd Lots",
 "d": 3378,
@@ -1405,29 +1382,6 @@
 "HN"
 ],
 "ot": "Sam Bankman-Fried and Matt Levine on How to Make Money in Crypto | Odd Lots"
-},
-{
-"i": "V36kSqwjaaw",
-"t": "Patrick Boyle \u00b7 Forbes has a fraud problem",
-"d": 1135,
-"c": "Explainer",
-"r": 6,
-"n": 1,
-"y": [
-2023,
-2026
-],
-"ny": 3,
-"s": 6.6,
-"dc": 0.938,
-"ev": null,
-"v": 2507259,
-"sp": "Patrick Boyle",
-"e": null,
-"cm": [
-"HN"
-],
-"ot": "Forbes Has a Fraud Problem!"
 },
 {
 "i": "rGfaJZAdfNE",
@@ -1453,27 +1407,27 @@
 "ot": "Theranos CEO Elizabeth Holmes: Firing Back At Doubters | Mad Money | CNBC"
 },
 {
-"i": "404IeUzGNZ4",
-"t": "The origins of the Greek debt crisis",
-"d": 1554,
+"i": "V36kSqwjaaw",
+"t": "Patrick Boyle \u00b7 Forbes has a fraud problem",
+"d": 1135,
 "c": "Explainer",
 "r": 6,
 "n": 1,
 "y": [
-2022,
-2023
+2023,
+2026
 ],
-"ny": 2,
-"s": 6.3,
-"dc": 0.998,
+"ny": 3,
+"s": 6.6,
+"dc": 0.938,
 "ev": null,
-"v": 1025787,
-"sp": "",
-"e": "Kraut",
+"v": 2507259,
+"sp": "Patrick Boyle",
+"e": null,
 "cm": [
 "HN"
 ],
-"ot": "The Origins of the Greek debt crisis"
+"ot": "Forbes Has a Fraud Problem!"
 },
 {
 "i": "iSVHp6CAyQ8",
@@ -1499,6 +1453,29 @@
 "ot": "Why The World Relies On ASML For Machines That Print Chips"
 },
 {
+"i": "404IeUzGNZ4",
+"t": "The origins of the Greek debt crisis",
+"d": 1554,
+"c": "Explainer",
+"r": 6,
+"n": 1,
+"y": [
+2022,
+2023
+],
+"ny": 2,
+"s": 6.3,
+"dc": 0.998,
+"ev": null,
+"v": 1025787,
+"sp": "",
+"e": "Kraut",
+"cm": [
+"HN"
+],
+"ot": "The Origins of the Greek debt crisis"
+},
+{
 "i": "OWwzQyXAvXI",
 "t": "The MiniScribe accounting fraud: bricks instead of hard drives",
 "d": 1310,
@@ -1520,6 +1497,29 @@
 "HN"
 ],
 "ot": "They Shipped Bricks Instead of Hard Drives - The Miniscribe Accounting Fraud"
+},
+{
+"i": "d4o13isDdfY",
+"t": "The Tax Free Tour \u00b7 VPRO",
+"d": 3185,
+"c": "Documentary",
+"r": 6,
+"n": 1,
+"y": [
+2013,
+2021
+],
+"ny": 2,
+"s": 6.3,
+"dc": 1.035,
+"ev": 2013,
+"v": 626161,
+"sp": "",
+"e": "VPRO",
+"cm": [
+"HN"
+],
+"ot": "The Tax Free Tour - VPRO documentary - 2013"
 },
 {
 "i": "Dgp-CM-gQik",
@@ -1591,29 +1591,6 @@
 "ot": "Energy Investments Dialogue | Bill Gates | Global Energy Forum"
 },
 {
-"i": "d4o13isDdfY",
-"t": "The Tax Free Tour \u00b7 VPRO",
-"d": 3185,
-"c": "Documentary",
-"r": 6,
-"n": 1,
-"y": [
-2013,
-2021
-],
-"ny": 2,
-"s": 6.3,
-"dc": 1.035,
-"ev": 2013,
-"v": 626161,
-"sp": "",
-"e": "VPRO",
-"cm": [
-"HN"
-],
-"ot": "The Tax Free Tour - VPRO documentary - 2013"
-},
-{
 "i": "NufJ7g63KSY",
 "t": "Patrick Boyle \u00b7 Why Wall Street is ignoring Big Tech's debt",
 "d": 2021,
@@ -1635,6 +1612,29 @@
 "HN"
 ],
 "ot": "Why Wall Street is Ignoring Big Tech's Debt"
+},
+{
+"i": "TAE8i40A5uI",
+"t": "Your bank has failed: inside an FDIC bank closure \u00b7 CBS",
+"d": 800,
+"c": "News segment",
+"r": 6,
+"n": 1,
+"y": [
+2023,
+2023
+],
+"ny": 1,
+"s": 6.0,
+"dc": 1.049,
+"ev": null,
+"v": 525934,
+"sp": "",
+"e": "CBS News",
+"cm": [
+"HN"
+],
+"ot": "Your Bank Has Failed"
 },
 {
 "i": "Bmj2PaxX24E",
@@ -1681,29 +1681,6 @@
 "HN"
 ],
 "ot": "HSBC's Stuart Kirk: Why Investors Shouldn\u2019t Fear Climate Risk | FT Moral Money Summit Europe"
-},
-{
-"i": "TAE8i40A5uI",
-"t": "Your bank has failed: inside an FDIC bank closure \u00b7 CBS",
-"d": 800,
-"c": "News segment",
-"r": 6,
-"n": 1,
-"y": [
-2023,
-2023
-],
-"ny": 1,
-"s": 6.0,
-"dc": 1.049,
-"ev": null,
-"v": 525934,
-"sp": "",
-"e": "CBS News",
-"cm": [
-"HN"
-],
-"ot": "Your Bank Has Failed"
 },
 {
 "i": "JHZnVdBZJfA",
@@ -1821,6 +1798,29 @@
 "ot": "We Need To Talk About Leopold"
 },
 {
+"i": "6VOQnK7O2To",
+"t": "Chris Sacca \u00b7 This Week in Startups #291",
+"d": 4340,
+"c": "Interview or conversation",
+"r": 5,
+"n": 1,
+"y": [
+2012,
+2017
+],
+"ny": 4,
+"s": 5.75,
+"dc": 0.993,
+"ev": 2012,
+"v": 108291,
+"sp": "Chris Sacca, Jason Calacanis",
+"e": "This Week in Startups",
+"cm": [
+"HN"
+],
+"ot": "Chris Sacca of Lowercase Capital - TWiST #291"
+},
+{
 "i": "rpkoCZ4vBSI",
 "t": "Clayton Christensen \u00b7 Disruptive innovation \u00b7 Sa\u00efd Business School",
 "d": 3555,
@@ -1867,27 +1867,27 @@
 "ot": "Jim Cramer: \"Bear Stearns is Fine!\" Tues, 3/11/08"
 },
 {
-"i": "6VOQnK7O2To",
-"t": "Chris Sacca \u00b7 This Week in Startups #291",
-"d": 4340,
-"c": "Interview or conversation",
+"i": "q9Golcxjpi8",
+"t": "Ben Felix \u00b7 Renting vs. buying a home: how to decide",
+"d": 880,
+"c": "Explainer",
 "r": 5,
 "n": 1,
 "y": [
-2012,
-2017
+2021,
+2026
 ],
 "ny": 4,
 "s": 5.75,
-"dc": 0.993,
-"ev": 2012,
-"v": 108291,
-"sp": "Chris Sacca, Jason Calacanis",
-"e": "This Week in Startups",
+"dc": 0.9,
+"ev": 2019,
+"v": 359965,
+"sp": "Ben Felix",
+"e": null,
 "cm": [
 "HN"
 ],
-"ot": "Chris Sacca of Lowercase Capital - TWiST #291"
+"ot": "Renting vs Buying a Home: How to Decide"
 },
 {
 "i": "jj8rMwdQf6k",
@@ -1936,50 +1936,27 @@
 "ot": "Free To Choose 1980 - Vol. 01 The Power of the Market - Full Video"
 },
 {
-"i": "T2IaJwkqgPk",
-"t": "Inside Job \u00b7 documentary on the 2008 financial crisis",
-"d": 6519,
-"c": "Documentary",
-"r": 5,
-"n": 1,
-"y": [
-2021,
-2025
-],
-"ny": 4,
-"s": 5.75,
-"dc": 0.778,
-"ev": 2010,
-"v": 2690651,
-"sp": "Charles Ferguson",
-"e": "Inside Job",
-"cm": [
-"HN"
-],
-"ot": "Inside Job (2010 Full Documentary Movie)"
-},
-{
-"i": "q9Golcxjpi8",
-"t": "Ben Felix \u00b7 Renting vs. buying a home: how to decide",
-"d": 880,
+"i": "f5SE47Xjx2Q",
+"t": "Why 50 million Chinese homes are empty",
+"d": 750,
 "c": "Explainer",
 "r": 5,
 "n": 1,
 "y": [
-2021,
-2026
+2018,
+2022
 ],
 "ny": 4,
 "s": 5.75,
-"dc": 0.9,
-"ev": 2019,
-"v": 359965,
-"sp": "Ben Felix",
-"e": null,
+"dc": 0.751,
+"ev": null,
+"v": 4505165,
+"sp": "",
+"e": "PolyMatter",
 "cm": [
 "HN"
 ],
-"ot": "Renting vs Buying a Home: How to Decide"
+"ot": "Why 50 Million Chinese Homes are Empty"
 },
 {
 "i": "069y1MpOkQY",
@@ -2005,27 +1982,27 @@
 "ot": "How Budget Airlines Work"
 },
 {
-"i": "f5SE47Xjx2Q",
-"t": "Why 50 million Chinese homes are empty",
-"d": 750,
-"c": "Explainer",
+"i": "T2IaJwkqgPk",
+"t": "Inside Job \u00b7 documentary on the 2008 financial crisis",
+"d": 6519,
+"c": "Documentary",
 "r": 5,
 "n": 1,
 "y": [
-2018,
-2022
+2021,
+2025
 ],
 "ny": 4,
 "s": 5.75,
-"dc": 0.751,
-"ev": null,
-"v": 4505165,
-"sp": "",
-"e": "PolyMatter",
+"dc": 0.778,
+"ev": 2010,
+"v": 2690651,
+"sp": "Charles Ferguson",
+"e": "Inside Job",
 "cm": [
 "HN"
 ],
-"ot": "Why 50 Million Chinese Homes are Empty"
+"ot": "Inside Job (2010 Full Documentary Movie)"
 },
 {
 "i": "I6xwMIUPHss",
@@ -2074,6 +2051,29 @@
 "ot": "Black Wednesday (BBC 1997)"
 },
 {
+"i": "ITvXlax4ZXk",
+"t": "China's local government debt problem",
+"d": 839,
+"c": "Explainer",
+"r": 5,
+"n": 1,
+"y": [
+2021,
+2023
+],
+"ny": 3,
+"s": 5.5,
+"dc": 0.763,
+"ev": null,
+"v": 3550115,
+"sp": "",
+"e": "Economics Explained",
+"cm": [
+"HN"
+],
+"ot": "China Has A Debt Problem Three Times Larger Than Evergrande | Economics Explained"
+},
+{
 "i": "Q6NpHbMFaQ8",
 "t": "Chris Sacca \u00b7 Foundation 07 with Kevin Rose",
 "d": 3318,
@@ -2120,75 +2120,6 @@
 "ot": "Prof. Werner brilliantly explains how the banking system and financial sector really work."
 },
 {
-"i": "ITvXlax4ZXk",
-"t": "China's local government debt problem",
-"d": 839,
-"c": "Explainer",
-"r": 5,
-"n": 1,
-"y": [
-2021,
-2023
-],
-"ny": 3,
-"s": 5.5,
-"dc": 0.763,
-"ev": null,
-"v": 3550115,
-"sp": "",
-"e": "Economics Explained",
-"cm": [
-"HN"
-],
-"ot": "China Has A Debt Problem Three Times Larger Than Evergrande | Economics Explained"
-},
-{
-"i": "ylLTMYt24lA",
-"t": "How American CEOs got so rich",
-"d": 608,
-"c": "Explainer",
-"r": 5,
-"n": 1,
-"y": [
-2019,
-2020
-],
-"ny": 2,
-"s": 5.25,
-"dc": 0.78,
-"ev": null,
-"v": 2583730,
-"sp": "",
-"e": "Vox",
-"cm": [
-"HN"
-],
-"ot": "How American CEOs got so rich"
-},
-{
-"i": "jJIO7aRXUCg",
-"t": "How ASML builds a $150M EUV machine",
-"d": 892,
-"c": "Explainer",
-"r": 5,
-"n": 1,
-"y": [
-2021,
-2022
-],
-"ny": 2,
-"s": 5.25,
-"dc": 0.882,
-"ev": null,
-"v": 464629,
-"sp": "",
-"e": "Asianometry",
-"cm": [
-"HN"
-],
-"ot": "How ASML Builds a $150 Million EUV Machine"
-},
-{
 "i": "386p68_lDHA",
 "t": "Coffeezilla \u00b7 Logan Paul's biggest scam",
 "d": 1489,
@@ -2210,29 +2141,6 @@
 "HN"
 ],
 "ot": "Investigating Logan Paul's Biggest Scam"
-},
-{
-"i": "T8ByoAt5gCA",
-"t": "Ed Zitron with Adam Conover \u00b7 Is the AI bubble bursting?",
-"d": 4521,
-"c": "Interview or conversation",
-"r": 5,
-"n": 1,
-"y": [
-2024,
-2026
-],
-"ny": 2,
-"s": 5.25,
-"dc": 0.829,
-"ev": 2025,
-"v": 1076285,
-"sp": "Ed Zitron, Adam Conover",
-"e": null,
-"cm": [
-"HN"
-],
-"ot": "The A.I. Bubble is Bursting with Ed Zitron"
 },
 {
 "i": "hJ-rRXWhElI",
@@ -2258,6 +2166,75 @@
 "ot": "Your Favorite YouTube Channel is (Probably) Owned By Private Equity"
 },
 {
+"i": "jJIO7aRXUCg",
+"t": "How ASML builds a $150M EUV machine",
+"d": 892,
+"c": "Explainer",
+"r": 5,
+"n": 1,
+"y": [
+2021,
+2022
+],
+"ny": 2,
+"s": 5.25,
+"dc": 0.882,
+"ev": null,
+"v": 464629,
+"sp": "",
+"e": "Asianometry",
+"cm": [
+"HN"
+],
+"ot": "How ASML Builds a $150 Million EUV Machine"
+},
+{
+"i": "T8ByoAt5gCA",
+"t": "Ed Zitron with Adam Conover \u00b7 Is the AI bubble bursting?",
+"d": 4521,
+"c": "Interview or conversation",
+"r": 5,
+"n": 1,
+"y": [
+2024,
+2026
+],
+"ny": 2,
+"s": 5.25,
+"dc": 0.829,
+"ev": 2025,
+"v": 1076285,
+"sp": "Ed Zitron, Adam Conover",
+"e": null,
+"cm": [
+"HN"
+],
+"ot": "The A.I. Bubble is Bursting with Ed Zitron"
+},
+{
+"i": "ylLTMYt24lA",
+"t": "How American CEOs got so rich",
+"d": 608,
+"c": "Explainer",
+"r": 5,
+"n": 1,
+"y": [
+2019,
+2020
+],
+"ny": 2,
+"s": 5.25,
+"dc": 0.78,
+"ev": null,
+"v": 2583730,
+"sp": "",
+"e": "Vox",
+"cm": [
+"HN"
+],
+"ot": "How American CEOs got so rich"
+},
+{
 "i": "yrxYhv2O3wU",
 "t": "Ray Dalio \u00b7 What coronavirus means for the global economy \u00b7 TED",
 "d": 3161,
@@ -2279,6 +2256,29 @@
 "HN"
 ],
 "ot": "What coronavirus means for the global economy | Ray Dalio"
+},
+{
+"i": "EpMLAQbSYAw",
+"t": "Age of Easy Money \u00b7 FRONTLINE",
+"d": 6798,
+"c": "Documentary",
+"r": 5,
+"n": 1,
+"y": [
+2023,
+2023
+],
+"ny": 1,
+"s": 5.0,
+"dc": 0.678,
+"ev": 2023,
+"v": 23686991,
+"sp": "",
+"e": "FRONTLINE",
+"cm": [
+"HN"
+],
+"ot": "Age of Easy Money (full documentary) | FRONTLINE"
 },
 {
 "i": "4RS4JIEVyXM",
@@ -2373,29 +2373,6 @@
 "ot": "Anthropic, OpenAI Should Not Be Allowed to IPO, Says Ed Zitron"
 },
 {
-"i": "EpMLAQbSYAw",
-"t": "Age of Easy Money \u00b7 FRONTLINE",
-"d": 6798,
-"c": "Documentary",
-"r": 5,
-"n": 1,
-"y": [
-2023,
-2023
-],
-"ny": 1,
-"s": 5.0,
-"dc": 0.678,
-"ev": 2023,
-"v": 23686991,
-"sp": "",
-"e": "FRONTLINE",
-"cm": [
-"HN"
-],
-"ot": "Age of Easy Money (full documentary) | FRONTLINE"
-},
-{
 "i": "DNCZHAQnfGU",
 "t": "Alan Greenspan on the government's ability to create money",
 "d": 96,
@@ -2440,29 +2417,6 @@
 "HN"
 ],
 "ot": "Warren Buffett speaks with Florida University"
-},
-{
-"i": "U5kIdtMJGc8",
-"t": "Jim Simons \u00b7 The mathematician who cracked Wall Street \u00b7 TED",
-"d": 1388,
-"c": "Interview or conversation",
-"r": 4,
-"n": 1,
-"y": [
-2015,
-2024
-],
-"ny": 4,
-"s": 4.6,
-"dc": 0.619,
-"ev": 2015,
-"v": 2904683,
-"sp": "Jim Simons, Chris Anderson",
-"e": "TED",
-"cm": [
-"HN"
-],
-"ot": "The mathematician who cracked Wall Street | Jim Simons"
 },
 {
 "i": "RskzYHPlh5U",
@@ -2511,6 +2465,29 @@
 "ot": "Milton Friedman - Lesson of the Pencil"
 },
 {
+"i": "U5kIdtMJGc8",
+"t": "Jim Simons \u00b7 The mathematician who cracked Wall Street \u00b7 TED",
+"d": 1388,
+"c": "Interview or conversation",
+"r": 4,
+"n": 1,
+"y": [
+2015,
+2024
+],
+"ny": 4,
+"s": 4.6,
+"dc": 0.619,
+"ev": 2015,
+"v": 2904683,
+"sp": "Jim Simons, Chris Anderson",
+"e": "TED",
+"cm": [
+"HN"
+],
+"ot": "The mathematician who cracked Wall Street | Jim Simons"
+},
+{
 "i": "ZBEqyiO35cQ",
 "t": "Tether's CTO and general counsel interviewed \u00b7 CNBC",
 "d": 1955,
@@ -2532,75 +2509,6 @@
 "HN"
 ],
 "ot": "CNBC TechCheck+ chats with Tether's CTO and general counsel \u2014 7/21/21"
-},
-{
-"i": "0MeRN7LE1LQ",
-"t": "How global billionaires made their money",
-"d": 981,
-"c": "Explainer",
-"r": 4,
-"n": 1,
-"y": [
-2020,
-2022
-],
-"ny": 3,
-"s": 4.4,
-"dc": 0.634,
-"ev": null,
-"v": 2033210,
-"sp": "",
-"e": "Economics Explained",
-"cm": [
-"HN"
-],
-"ot": "The Ranks of Global Billionaires: Not All Billionaires Are Made Equal"
-},
-{
-"i": "x-rJciYZmi0",
-"t": "Michael Green \u00b7 A new look at active vs. passive",
-"d": 2818,
-"c": "Interview or conversation",
-"r": 4,
-"n": 1,
-"y": [
-2020,
-2025
-],
-"ny": 3,
-"s": 4.4,
-"dc": 0.907,
-"ev": null,
-"v": 25658,
-"sp": "Michael Green",
-"e": null,
-"cm": [
-"HN"
-],
-"ot": "A new look at active vs passive (Michael Green)"
-},
-{
-"i": "HNkLcD3PKyk",
-"t": "Odd Lots \u00b7 Converting office buildings to apartments",
-"d": 2853,
-"c": "Interview or conversation",
-"r": 4,
-"n": 1,
-"y": [
-2023,
-2026
-],
-"ny": 3,
-"s": 4.4,
-"dc": 1.08,
-"ev": null,
-"v": 5048,
-"sp": "",
-"e": "Odd Lots",
-"cm": [
-"HN"
-],
-"ot": "What It Really Takes to Convert an Office Building to Apartments | Odd Lots"
 },
 {
 "i": "CTQcLi6SpX8",
@@ -2626,27 +2534,27 @@
 "ot": "Jim Simons: A Short Story of My Life and Mathematics (2022)"
 },
 {
-"i": "ClfBxWPkBKU",
-"t": "William Black \u00b7 How to rob a bank from the inside \u00b7 TED",
-"d": 1129,
-"c": "Talk or speech",
+"i": "0MeRN7LE1LQ",
+"t": "How global billionaires made their money",
+"d": 981,
+"c": "Explainer",
 "r": 4,
 "n": 1,
 "y": [
-2015,
-2023
+2020,
+2022
 ],
 "ny": 3,
 "s": 4.4,
-"dc": 0.772,
-"ev": 2013,
-"v": 151225,
-"sp": "William Black",
-"e": "TED",
+"dc": 0.634,
+"ev": null,
+"v": 2033210,
+"sp": "",
+"e": "Economics Explained",
 "cm": [
 "HN"
 ],
-"ot": "How to rob a bank (from the inside, that is) | William Black"
+"ot": "The Ranks of Global Billionaires: Not All Billionaires Are Made Equal"
 },
 {
 "i": "gyk12Wf_TeQ",
@@ -2670,6 +2578,98 @@
 "HN"
 ],
 "ot": "How London became the dirty money capital of the world | FT Film"
+},
+{
+"i": "HNkLcD3PKyk",
+"t": "Odd Lots \u00b7 Converting office buildings to apartments",
+"d": 2853,
+"c": "Interview or conversation",
+"r": 4,
+"n": 1,
+"y": [
+2023,
+2026
+],
+"ny": 3,
+"s": 4.4,
+"dc": 1.08,
+"ev": null,
+"v": 5048,
+"sp": "",
+"e": "Odd Lots",
+"cm": [
+"HN"
+],
+"ot": "What It Really Takes to Convert an Office Building to Apartments | Odd Lots"
+},
+{
+"i": "x-rJciYZmi0",
+"t": "Michael Green \u00b7 A new look at active vs. passive",
+"d": 2818,
+"c": "Interview or conversation",
+"r": 4,
+"n": 1,
+"y": [
+2020,
+2025
+],
+"ny": 3,
+"s": 4.4,
+"dc": 0.907,
+"ev": null,
+"v": 25658,
+"sp": "Michael Green",
+"e": null,
+"cm": [
+"HN"
+],
+"ot": "A new look at active vs passive (Michael Green)"
+},
+{
+"i": "ClfBxWPkBKU",
+"t": "William Black \u00b7 How to rob a bank from the inside \u00b7 TED",
+"d": 1129,
+"c": "Talk or speech",
+"r": 4,
+"n": 1,
+"y": [
+2015,
+2023
+],
+"ny": 3,
+"s": 4.4,
+"dc": 0.772,
+"ev": 2013,
+"v": 151225,
+"sp": "William Black",
+"e": "TED",
+"cm": [
+"HN"
+],
+"ot": "How to rob a bank (from the inside, that is) | William Black"
+},
+{
+"i": "W5g4sPi1wd4",
+"t": "Bill Gates on startups and investing \u00b7 Village Global",
+"d": 3852,
+"c": "Interview or conversation",
+"r": 4,
+"n": 1,
+"y": [
+2019,
+2021
+],
+"ny": 2,
+"s": 4.2,
+"dc": 0.722,
+"ev": 2019,
+"v": 344014,
+"sp": "Bill Gates",
+"e": "Village Global",
+"cm": [
+"HN"
+],
+"ot": "Bill Gates on Startups, Investing and Solving The World's Hardest Problems"
 },
 {
 "i": "FQrEDq8KPiU",
@@ -2741,27 +2741,27 @@
 "ot": "Foundation 35 // Brian Armstrong"
 },
 {
-"i": "W5g4sPi1wd4",
-"t": "Bill Gates on startups and investing \u00b7 Village Global",
-"d": 3852,
+"i": "eblPwXFb7TE",
+"t": "Tesla's founders on the early days \u00b7 CNBC",
+"d": 1540,
 "c": "Interview or conversation",
 "r": 4,
 "n": 1,
 "y": [
-2019,
-2021
+2021,
+2022
 ],
 "ny": 2,
 "s": 4.2,
-"dc": 0.722,
-"ev": 2019,
-"v": 344014,
-"sp": "Bill Gates",
-"e": "Village Global",
+"dc": 0.631,
+"ev": null,
+"v": 2165628,
+"sp": "Martin Eberhard, Marc Tarpenning",
+"e": "CNBC",
 "cm": [
 "HN"
 ],
-"ot": "Bill Gates on Startups, Investing and Solving The World's Hardest Problems"
+"ot": "Tesla's Founders On Elon Musk And The Early Days"
 },
 {
 "i": "TDL4c8fMODk",
@@ -2902,6 +2902,29 @@
 "ot": "Bloomberg Terminal (Part 1) - Quick Introduction to Basic Functions"
 },
 {
+"i": "1-TZqOsVCNM",
+"t": "Naval Ravikant \u00b7 How to Get Rich (full)",
+"d": 12937,
+"c": "Interview or conversation",
+"r": 4,
+"n": 1,
+"y": [
+2020,
+2023
+],
+"ny": 2,
+"s": 4.2,
+"dc": 0.56,
+"ev": 2019,
+"v": 13948285,
+"sp": "Naval Ravikant",
+"e": null,
+"cm": [
+"HN"
+],
+"ot": "How to Get Rich"
+},
+{
 "i": "L6Cy7UwsRPQ",
 "t": "Charlie Munger \u00b7 USC Law commencement, part 1",
 "d": 526,
@@ -2923,29 +2946,6 @@
 "HN"
 ],
 "ot": "Charlie Munger Speech at USC - May 2007 (part 1 of 5)"
-},
-{
-"i": "eblPwXFb7TE",
-"t": "Tesla's founders on the early days \u00b7 CNBC",
-"d": 1540,
-"c": "Interview or conversation",
-"r": 4,
-"n": 1,
-"y": [
-2021,
-2022
-],
-"ny": 2,
-"s": 4.2,
-"dc": 0.631,
-"ev": null,
-"v": 2165628,
-"sp": "Martin Eberhard, Marc Tarpenning",
-"e": "CNBC",
-"cm": [
-"HN"
-],
-"ot": "Tesla's Founders On Elon Musk And The Early Days"
 },
 {
 "i": "wTiYaWFP59Q",
