@@ -34,6 +34,8 @@ for f in sorted(glob.glob(f'{D}/labels/*.jsonl')):
 
 # ---- mentions
 M = pd.read_parquet(f'{D}/mentions.parquet')
+SECRET = re.compile(r'(AKIA|ASIA)[0-9A-Z]{16}|AIza[0-9A-Za-z_\-]{35}|gh[pousr]_[0-9A-Za-z]{36,}|github_pat_[0-9A-Za-z_]{40,}|xox[baprs]-[0-9A-Za-z-]{10,}|-----BEGIN[A-Z ]*PRIVATE KEY-----|sk-[A-Za-z0-9_\-]{20,}|(?<![A-Za-z0-9/+])[A-Za-z0-9/+]{40}(?![A-Za-z0-9/+])')
+M['text'] = M.text.fillna('').map(lambda t: SECRET.sub('[redacted]', t))
 M['year'] = pd.to_datetime(M.created).dt.year
 M = M[~M.author.map(isbot)]
 M['who'] = M.source + ':' + M.author
@@ -52,7 +54,7 @@ M['channel'] = M.video_id.map(ch)
 g = M[M.channel.notna()].groupby(['who', 'channel']).video_id.nunique()
 heavy = set(g[g >= 3].index)
 whocount = M.groupby('video_id').who.nunique()
-M['self'] |= [((w, c) in heavy and whocount.get(v, 0) <= 2) for w, c, v in zip(M.who, M.channel, M.video_id)]
+M['self'] = M['self'].values | pd.Series([((w, c) in heavy and whocount.get(v, 0) <= 2) for w, c, v in zip(M.who, M.channel, M.video_id)], index=M.index).values
 M['flag_self'] = [(labels.get(v, {}).get('flags') or {}).get('self_promotion', False) and w in (labels.get(v, {}).get('self_whos') or [w]) for v, w in zip(M.video_id, M.who)]
 REC = M[~M.critical & ~M.self & ~M.flag_self & ~M.is_short]
 
@@ -156,9 +158,9 @@ def cat(v, row):
         if re.search(pat, t): return c
     return 'Other'
 idx, built = [], dt.date.today().isoformat()
-E['ct'] = [clean_title(v, r) for v, r in E.iterrows()]; E['cat'] = [cat(v, r) for v, r in E.iterrows()]
+E['ct'] = [clean_title(v, r) for v, r in E.iterrows()]; E['catg'] = [cat(v, r) for v, r in E.iterrows()]
 for v, r in E.iterrows():
-    idx.append(dict(i=v, t=r.ct, d=int(r.duration), c=r.cat, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], ny=int(r.years), s=round(r.score, 2), dc=round(r.deep, 3),
+    idx.append(dict(i=v, t=r.ct, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], ny=int(r.years), s=round(r.score, 2), dc=round(r.deep, 3),
                     ev=L(v).get('event_year'), sp=', '.join(L(v).get('speakers') or []), e=L(v).get('event'), cm=r.cmlist, ot=r.title))
 byid = {x['i']: x for x in idx}
 childs = collections.defaultdict(list)
@@ -170,7 +172,7 @@ for v, r in E.iterrows():
         if m.who in seen: continue
         seen.add(m.who); ms.append(dict(c=m.community, d=str(m.created)[:10], u=m.permalink, x=(m.text or '')[:200], cr=bool(m.critical)))
     top = [b for _, b in sorted(rel[v], reverse=True)[:12]]
-    json.dump(dict(i=v, t=r.ct, ot=r.title, ch=r.channel, up=r.uploaded, d=int(r.duration), c=r.cat, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], embed=bool(r.embeddable),
+    json.dump(dict(i=v, t=r.ct, ot=r.title, ch=r.channel, up=r.uploaded, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], embed=bool(r.embeddable),
                    why=L(v).get('why'), critical=int(crit_n.get(v, 0)), mentions=ms[:60], moments=moments(v),
                    others=[dict(i=c, t=agg.at[c, 'title'], d=int(agg.at[c, 'duration']), clip=k == 'clip') for c, k in childs[v]],
                    related=[byid[b] for b in top]), open(f'{S}/v/{v}.json', 'w'), separators=(',', ':'))

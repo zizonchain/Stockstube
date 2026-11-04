@@ -7,13 +7,13 @@ C = httpx.Client(timeout=90, headers={'User-Agent': 'StocksTube-research/0.1 (pe
 B = 'https://arctic-shift.photon-reddit.com/api/'
 def ts(y, m): return int(dt.datetime(y, m, 1, tzinfo=dt.timezone.utc).timestamp())
 def call(ep, params):
-    for i in range(5):
+    for i in range(3):
         try:
             r = C.get(B + ep, params=params); time.sleep(1)
             if r.status_code == 429: time.sleep(20*(i+1)); continue
             d = r.json()
             if d.get('error'):
-                if 'Timeout' in d['error']: time.sleep(10*(i+1)); continue
+                if 'Timeout' in d['error']: time.sleep(4*(i+1)); continue
                 raise RuntimeError(d['error'])
             return d['data']
         except (httpx.HTTPError, ValueError): time.sleep(5*(i+1))
@@ -25,7 +25,7 @@ def window(kind, key, val, a, b, fields):
     while True:
         d = call(f'{kind}/search', {'subreddit': SUB, key: val, 'after': a, 'before': end, 'limit': 100, 'fields': fields})
         if d is None:
-            if not out and b - a > 86400*6:
+            if not out and b - a > 86400*9:
                 m = (a + b)//2; out = window(kind, key, val, a, m, fields) + window(kind, key, val, m, b, fields); break
             open(os.path.join(RAW, 'giveup.log'), 'a').write(f'{kind} {val} {a} {end} got={len(out)}\n'); print('GIVEUP', kind, val, a, end, flush=True); break
         out += d
