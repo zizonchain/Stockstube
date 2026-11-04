@@ -5,3 +5,4 @@
 - Reddit comment thread titles are not in the comment record; left null for comments (posts carry titles). Cost of a lookup per thread was not worth it tonight.
 - Thumbnail: hq2.jpg (YouTube's 50% still; hq1/hq3 are 25%/75%). Checked it exists on sample ids; site falls back to hqdefault.jpg on error.
 - Recommender = distinct (source, author). AutoModerator and [deleted] dropped from counting entirely (simpler than once-per-thread; [deleted] is rare in these API pulls).
+- Arctic Shift: switched to 4s pacing, 30s waits on throttle, monthly windows, comments for all subs first, then link posts. Giveups logged per subreddit.

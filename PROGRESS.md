@@ -6,5 +6,5 @@ Spend: $0 (no paid APIs). YouTube quota used: ~440 units of 10,000.
 ## Running
 - Reddit queue (scripts/run_reddit.sh) via Arctic Shift; heavy throttling, gaps in data/raw/reddit/*/giveup.log.
 ## Next
-- In-session classification into data/labels/*.jsonl (candidates from rule prefilter), rerun rank.py.
+- In-session classification done for all 954 HN candidates (data/labels). Summaries for top 30.
 - Site QA with Playwright, report.

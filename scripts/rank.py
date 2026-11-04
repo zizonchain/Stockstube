@@ -77,7 +77,7 @@ def relevant(vid, row):
     return None  # unknown: decided below
 agg['label_rel'] = [relevant(i, r) for i, r in agg.iterrows()]
 agg['rule_rel'] = [rule_rel(r.to_dict()) for _, r in agg.iterrows()]
-agg['relevant'] = [lr if lr is not None else rr for lr, rr in zip(agg.label_rel, agg.rule_rel)]
+agg['relevant'] = [lr if lr is not None else (rr and inv_comm.get(v, 0) > 0) for v, lr, rr in zip(agg.index, agg.label_rel, agg.rule_rel)]
 STRICT = os.environ.get('STRICT', '1') == '1'  # unlabelled videos only from investing subreddits are trusted less
 agg['labelled'] = agg.label_rel.notna()
 
@@ -144,6 +144,17 @@ def moments(vid):
     return [dict(t=m['t'], n=m['n']) for m in out if m['n'] >= 2]
 
 def L(v): return labels.get(v) or {}
+URLX = re.compile(r'\(?(?:https?://)?(?:www\.|m\.)?(?:youtube\.com|youtu\.be|youtube-nocookie\.com)\S*', re.I)
+def excerpt(t, n=200):
+    t = re.sub(r'\s+', ' ', t or '').strip()
+    m = URLX.search(t); c = m.start() if m else len(t) // 2
+    t2 = URLX.sub('[video]', t); c = min(c, len(t2))
+    a = max(0, c - n // 2); b = min(len(t2), a + n); a = max(0, b - n)
+    x = t2[a:b]
+    if a > 0: x = '…' + x[x.find(' ') + 1:] if ' ' in x[:30] else '…' + x
+    if b < len(t2): x = (x[:x.rfind(' ')] if ' ' in x[-30:] else x) + '…'
+    x = re.sub(r'(\[video\]\s*)+', '[video] ', x).strip()
+    return x if x.strip('…[]video ') else ''
 def clean_title(v, row):
     if L(v).get('clean_title'): return L(v)['clean_title']
     t = re.sub(r'[\U0001F000-\U0001FFFF☀-➿]', '', row.title or '').strip()
@@ -170,7 +181,7 @@ for v, r in E.iterrows():
     seen, ms = set(), []
     for _, m in mm.iterrows():
         if m.who in seen: continue
-        seen.add(m.who); ms.append(dict(c=m.community, d=str(m.created)[:10], u=m.permalink, x=(m.text or '')[:200], cr=bool(m.critical)))
+        seen.add(m.who); ms.append(dict(c=m.community, d=str(m.created)[:10], u=m.permalink, x=excerpt(m.text), cr=bool(m.critical)))
     top = [b for _, b in sorted(rel[v], reverse=True)[:12]]
     json.dump(dict(i=v, t=r.ct, ot=r.title, ch=r.channel, up=r.uploaded, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], embed=bool(r.embeddable),
                    why=L(v).get('why'), critical=int(crit_n.get(v, 0)), mentions=ms[:60], moments=moments(v),
@@ -189,7 +200,7 @@ agg.reset_index().drop(columns=['description']).to_parquet(f'{D}/videos.parquet'
 # ---- public zip with hashed usernames
 h = lambda a: hashlib.sha256(('stockstube:' + a).encode()).hexdigest()[:12]
 pub = REC[REC.entry.isin(E.index)][['source', 'community', 'item_id', 'permalink', 'who', 'created', 'video_id', 'entry', 't', 'kind_item', 'score', 'text']].copy()
-pub['who'] = pub.who.map(h); pub['text'] = pub.text.str[:200]; pub = pub.rename(columns={'who': 'author_hash'})
+pub['who'] = pub.who.map(h); pub['text'] = pub.text.map(excerpt); pub = pub.rename(columns={'who': 'author_hash'})
 buf = io.BytesIO()
 with zipfile.ZipFile(f'{S}/stockstube-data.zip', 'w', zipfile.ZIP_DEFLATED) as z:
     z.writestr('ranked.json', json.dumps(idx)); z.writestr('videos.csv', E.drop(columns=['cmlist', 'description']).to_csv()); z.writestr('mentions.csv', pub.to_csv(index=False))
