@@ -101,7 +101,8 @@ for k, vids in groups.items():
         if v == canon: continue
         d0, d1 = agg.at[v, 'duration'], agg.at[canon, 'duration']
         if fuzz.token_set_ratio(L(v).get('clean_title', ''), L(canon).get('clean_title', '')) < 60: continue  # same show, different episode
-        if d1 and abs(d0 - d1) / max(d0, d1) <= 0.10: parent[v] = (canon, 'duplicate')
+        same_title = L(v).get('clean_title') and L(v).get('clean_title') == L(canon).get('clean_title')
+        if d1 and abs(d0 - d1) / max(d0, d1) <= (0.25 if same_title else 0.10): parent[v] = (canon, 'duplicate')
         elif d0 < 0.5 * d1: parent[v] = (canon, 'clip')
         else: continue
         merges.append(dict(child=v, parent=canon, kind=parent[v][1], key=' | '.join(map(str, k)), child_title=agg.at[v, 'title'], parent_title=agg.at[canon, 'title']))
