@@ -17,7 +17,7 @@ async function load() {
 function watched() { return LS.get('watched', []) } function hidden() { return LS.get('hidden', []) } function saved() { return LS.get('saved', []) }
 function markWatched(id) { const w = watched().filter(x => x.id !== id); w.unshift({id, at: Date.now()}); LS.set('watched', w.slice(0, 300)) }
 function toggle(k, id) { let a = LS.get(k, []); a = a.includes(id) ? a.filter(x => x !== id) : [id, ...a]; LS.set(k, a); return a.includes(id) }
-const TABS = [['top', 'Top'], ['red', 'Red day remedies'], ['deep', 'Deep cuts'], ['durable', 'Durable'], ['longs', 'Longs'], ['saved', 'Saved'], ['foryou', 'For you']];
+const TABS = [['top', 'Top'], ['red', 'Red day remedies'], ['deep', 'Hidden gems'], ['durable', 'Recommended year after year'], ['longs', 'Lectures, shareholder meetings and long interviews'], ['saved', 'Saved'], ['foryou', 'For you']];
 async function forYou() {
   const w = watched().slice(0, 25), hid = new Set([...hidden(), ...watched().map(x => x.id)]);
   if (!w.length) return null;
