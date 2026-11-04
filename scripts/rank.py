@@ -174,7 +174,9 @@ def cat(v, row):
 idx, built = [], dt.date.today().isoformat()
 RED = {l.strip() for l in open(f'{D}/labels/red_days.txt') if l.strip() and not l.startswith('#')}
 E['ct'] = [clean_title(v, r) for v, r in E.iterrows()]; E['catg'] = [cat(v, r) for v, r in E.iterrows()]
-E = E[E.catg != 'Other']  # film clips, pitches and gags people link in passing; see DECISIONS.md
+E = E[E.catg != 'Other']
+STRICT = {l.strip() for l in open(f'{D}/labels/strict_out.txt') if l.strip() and not l.startswith('#')}
+E = E[~E.index.isin(STRICT)]  # strict investing-only rule, see DECISIONS.md  # film clips, pitches and gags people link in passing; see DECISIONS.md
 for v, r in E.iterrows():
     idx.append(dict(i=v, t=r.ct, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], ny=int(r.years), s=round(r.score, 2), dc=round(r.deep, 3),
                     ev=L(v).get('event_year'), v=int(r.views), sp=', '.join(L(v).get('speakers') or []), e=L(v).get('event'), cm=r.cmlist, ot=r.title, **({'rd': 1} if v in RED else {})))
