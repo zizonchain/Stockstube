@@ -17,3 +17,5 @@ Bogleheads comments youtube 1205668800 0
 Bogleheads comments youtube 1204329600 0
 /home/user/hallseat/stockstube/scripts/collect_reddit.py:43: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   now = dt.datetime.utcnow()
+/home/user/hallseat/stockstube/scripts/collect_reddit.py:43: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  now = dt.datetime.utcnow()
