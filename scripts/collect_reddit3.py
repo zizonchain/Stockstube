@@ -16,6 +16,8 @@ END = 1793750400  # 2026-11-04 00:00 UTC, fixed so cache names stay stable
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data', 'raw', 'reddit')
 YEARLY = {'econmonitor', 'SecurityAnalysis', 'quant', 'finance'}  # under ~1M comments
 FIELDS = {'comments': 'id,author,body,created_utc,link_id,parent_id,score', 'posts': 'id,author,title,url,selftext,created_utc,score'}
+_m = os.path.join(ROOT, '..', '..', 'reddit_extract', 'windows_done.txt')
+DONE = set(open(_m).read().split()) if os.path.exists(_m) else set()  # windows already compacted into the committed extract
 def log(*a): print(dt.datetime.utcnow().strftime('%H:%M:%S'), *a, flush=True)
 
 def call(ep, params):
@@ -39,7 +41,7 @@ def call(ep, params):
 
 def window(raw, sub, kind, key, val, a, b, stats):
     f = os.path.join(raw, f'v3_{kind}_{key}_{val.replace("/", "").replace(":", "")}_{a}_{b}.json')
-    if os.path.exists(f): stats['cached'] += 1; return True
+    if os.path.exists(f) or f'{sub}/{os.path.basename(f)}' in DONE: stats['cached'] += 1; return True
     out, end, tries = [], b, 0
     while True:
         d = call(f'{kind}/search', {'subreddit': sub, key: val, 'after': a, 'before': end, 'limit': 100, 'fields': FIELDS[kind]})

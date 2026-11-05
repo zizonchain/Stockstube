@@ -23,14 +23,15 @@ for f in glob.glob(f'{D}/raw/hn/*.json'):
             add('hn', 'HN', h['objectID'], f"https://news.ycombinator.com/item?id={h['objectID']}", h.get('author'), h['created_at_i'], h.get('comment_text'), 'comment', None, h.get('story_title'), h.get('story_id'))
         else:
             add('hn', 'HN', h['objectID'], f"https://news.ycombinator.com/item?id={h['objectID']}", h.get('author'), h['created_at_i'], h.get('story_text'), 'post', h.get('points'), h.get('title'), h['objectID'], h.get('url'))
-for f in glob.glob(f'{D}/raw/reddit/*/[wv]*_*.json'):
-    sub = f.split('/')[-2]; post = '_posts_' in '_' + os.path.basename(f)
-    for h in json.load(open(f)):
-        if post:
-            add('reddit', f'r/{sub}', h['id'], f"https://www.reddit.com/r/{sub}/comments/{h['id']}/", h.get('author'), h['created_utc'], h.get('selftext'), 'post', h.get('score'), h.get('title'), h['id'], h.get('url'))
+import gzip  # Reddit comes from the committed compact extract (scripts/compact_reddit.py), authors hashed
+for f in glob.glob(f'{D}/reddit_extract/*.jsonl.gz'):
+    sub = os.path.basename(f)[:-len('.jsonl.gz')]
+    for l in gzip.open(f, 'rt'):
+        h = json.loads(l)
+        if h['k'] == 'p':
+            add('reddit', f'r/{sub}', h['id'], f"https://www.reddit.com/r/{sub}/comments/{h['id']}/", h['a'], h['t'], h.get('x'), 'post', h.get('s'), h.get('ti'), h['id'], h.get('u'))
         else:
-            link = (h.get('link_id') or '').replace('t3_', '')
-            add('reddit', f'r/{sub}', h['id'], f"https://www.reddit.com/r/{sub}/comments/{link}/_/{h['id']}/", h.get('author'), h['created_utc'], h.get('body'), 'comment', h.get('score'), None, link)
+            add('reddit', f'r/{sub}', h['id'], f"https://www.reddit.com/r/{sub}/comments/{h['l']}/_/{h['id']}/", h['a'], h['t'], h.get('x'), 'comment', h.get('s'), None, h['l'])
 m = pd.DataFrame(rows).drop_duplicates(['source', 'item_id', 'video_id'])
 m.to_parquet(f'{D}/mentions.parquet'); pd.DataFrame(other).drop_duplicates(['source','item_id','link_id']).to_parquet(f'{D}/links_other.parquet')
 print('mentions', len(m), 'videos', m.video_id.nunique(), 'other', len(other)); print(m.groupby('community').size().sort_values().tail(20))
