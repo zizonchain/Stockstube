@@ -3,3 +3,4 @@ data/raw/
 __pycache__/
 data/*.parquet
 data/*.log
+data/work/
