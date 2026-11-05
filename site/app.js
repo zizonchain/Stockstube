@@ -84,7 +84,7 @@ async function video(id) {
 function about() {
   document.title = 'About · StocksTube';
   app.innerHTML = `<div class="prose"><h1>About</h1>
-  <p>StocksTube lists the investing videos that people in investing communities keep recommending to each other. It counts distinct people who linked a video, across communities and years, in public comments on Hacker News and investing subreddits.</p>
+  <p>StocksTube lists the investing videos that people in investing communities keep recommending to each other. It reads public comments on Hacker News and investing subreddits and ranks each video by how many separate months new people recommended it, so a video people kept recommending for years beats a one-week spike.</p>
   <p>A video needs at least two different people recommending it. Bots, critical mentions and people linking their own channels do not count. Duplicate uploads of the same talk are merged. Titles are plain labels written from the video and the comments, not the uploader's title.</p>
   <h2>Sources</h2><table>${META.sources.map(s => `<tr><td>${esc(s[0])}</td><td>${s[1].toLocaleString()} mentions</td></tr>`).join('')}</table>
   <p>${META.entries.toLocaleString()} videos listed. Data built ${esc(META.built)}.</p>
