@@ -1,4 +1,4 @@
-Live site: https://zizonchain.github.io/Stockstube/
+Live site: https://stockstube.org/
 
 Open the site: `cd ~/stockstube/site && python3 -m http.server 8000` (in this session the folder is `/home/user/hallseat/stockstube/site`)
 Then visit http://localhost:8000
