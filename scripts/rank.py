@@ -108,11 +108,16 @@ for k, vids in groups.items():
         merges.append(dict(child=v, parent=canon, kind=parent[v][1], key=' | '.join(map(str, k)), child_title=agg.at[v, 'title'], parent_title=agg.at[canon, 'title']))
 pd.DataFrame(merges, columns=['child', 'parent', 'kind', 'key', 'child_title', 'parent_title']).to_csv(f'{R}/merges.csv', index=False)
 REC = REC.assign(entry=REC.video_id.map(lambda v: parent.get(v, (v,))[0]))
+REC['ym'] = pd.to_datetime(REC.created).dt.strftime('%Y-%m')
+_first = REC.sort_values('created').drop_duplicates(['entry', 'who'])  # each person counts once, in the month they first recommended it
+_months = _first.groupby('entry').ym.nunique()
 E = REC.groupby('entry').agg(recs=('who', 'nunique'), comms=('community', 'nunique'), years=('year', 'nunique'), y0=('year', 'min'), y1=('year', 'max'), cmlist=('community', lambda s: sorted(set(s))))
 E = E[E.index.isin(agg.index) & ~E.index.isin(parent.keys())]
 E = E.join(agg[['title', 'channel', 'uploaded', 'duration', 'views', 'embeddable', 'relevant', 'labelled', 'description']])
 E = E[(E.recs >= 2) & E.relevant.astype(bool) & (E.duration > 60)]
-E['score'] = E.recs * (1 + 0.15 * (E.comms - 1)) * (1 + 0.05 * (E.years - 1).clip(upper=10))
+# rank by lasting recommendation: distinct calendar months with a recommendation (HackerTube's rule); people break ties
+E['months'] = _months.reindex(E.index).fillna(0).astype(int)
+E['score'] = E.months + E.recs / 1000
 E['deep'] = E.recs / (E.views + 10).map(math.log10)
 E = E.sort_values('score', ascending=False)
 
@@ -178,7 +183,7 @@ E = E[E.catg != 'Other']
 STRICT = {l.strip() for l in open(f'{D}/labels/strict_out.txt') if l.strip() and not l.startswith('#')}
 E = E[~E.index.isin(STRICT)]  # strict investing-only rule, see DECISIONS.md  # film clips, pitches and gags people link in passing; see DECISIONS.md
 for v, r in E.iterrows():
-    idx.append(dict(i=v, t=r.ct, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], ny=int(r.years), s=round(r.score, 2), dc=round(r.deep, 3),
+    idx.append(dict(i=v, t=r.ct, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], ny=int(r.years), nm=int(r.months), s=round(r.score, 3), dc=round(r.deep, 3),
                     ev=L(v).get('event_year'), v=int(r.views), sp=', '.join(L(v).get('speakers') or []), e=L(v).get('event'), cm=r.cmlist, ot=r.title, u=int(str(r.uploaded)[:4]) if str(r.uploaded)[:4].isdigit() else None, **({'rd': 1} if v in RED else {})))
 byid = {x['i']: x for x in idx}
 childs = collections.defaultdict(list)
