@@ -12,9 +12,13 @@ def snip(text, url=''):
     items, norm = extract(text or '')
     parts = [context(norm, it['start'], it['end']) for it in items if it['end']][:4]
     return ' … '.join(dict.fromkeys(parts))[:1600]
-done = set(open(f'{OUT}/windows_done.txt').read().split()) if os.path.exists(f'{OUT}/windows_done.txt') else set()
+os.makedirs(f'{OUT}/done', exist_ok=True)
+ONLY = sys.argv[1:]  # optional: compact only these subreddits (parallel jobs each own their files)
 for sub_dir in sorted(glob.glob(f'{D}/raw/reddit/*/')):
     sub = sub_dir.rstrip('/').split('/')[-1]
+    if ONLY and sub not in ONLY: continue
+    dpath = f'{OUT}/done/{sub}.txt'
+    done = set(open(dpath).read().split()) if os.path.exists(dpath) else set()
     path = f'{OUT}/{sub}.jsonl.gz'
     rows = {}
     if os.path.exists(path):
@@ -34,5 +38,5 @@ for sub_dir in sorted(glob.glob(f'{D}/raw/reddit/*/')):
         if os.path.basename(f).startswith('v3_'): done.add(f'{sub}/{os.path.basename(f)}')
     with gzip.open(path, 'wt') as g:
         for r in sorted(rows.values(), key=lambda r: (r['t'], r['id'])): g.write(json.dumps(r, separators=(',', ':')) + '\n')
+    open(dpath, 'w').write('\n'.join(sorted(done)) + '\n')
     print(sub, len(rows))
-open(f'{OUT}/windows_done.txt', 'w').write('\n'.join(sorted(done)) + '\n')

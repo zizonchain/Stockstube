@@ -12,6 +12,11 @@ jobs:
   collect:
     runs-on: ubuntu-latest
     timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        sub: [Bogleheads, StockMarket, financialindependence, investing, stocks, small]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -22,26 +27,31 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: data/raw/reddit
-          key: reddit-raw-${{ github.run_id }}
-          restore-keys: reddit-raw-
-      - name: collect (stops itself before the job limit)
+          key: reddit-raw-${{ matrix.sub }}-${{ github.run_id }}
+          restore-keys: |
+            reddit-raw-${{ matrix.sub }}-
+            reddit-raw-
+      - name: collect (one subreddit per runner, stops itself before the job limit)
         run: |
-          timeout 20m python3 -I scripts/collect_reddit3.py posts investing Bogleheads || true
-          timeout 300m python3 -I scripts/collect_reddit3.py comments econmonitor SecurityAnalysis quant finance ValueInvesting dividends Bogleheads StockMarket financialindependence investing stocks || true
+          if [ "${{ matrix.sub }}" = small ]; then SUBS="econmonitor SecurityAnalysis quant finance ValueInvesting dividends"; else SUBS="${{ matrix.sub }}"; fi
+          echo "SUBS=$SUBS" >> "$GITHUB_ENV"
+          timeout 90m python3 -I scripts/collect_reddit3.py posts $SUBS || true
+          timeout 230m python3 -I scripts/collect_reddit3.py comments $SUBS || true
       - name: compact
         if: always()
-        run: python3 -I scripts/compact_reddit.py
+        run: python3 -I scripts/compact_reddit.py $SUBS
       - name: save partial windows
         if: always()
         uses: actions/cache/save@v4
         with:
           path: data/raw/reddit
-          key: reddit-raw-${{ github.run_id }}
+          key: reddit-raw-${{ matrix.sub }}-${{ github.run_id }}
       - name: commit extract
         if: always()
         run: |
           git config user.name "stockstube-collector"
           git config user.email "actions@users.noreply.github.com"
           git add data/reddit_extract
-          git diff --cached --quiet || git commit -m "chore(data): reddit extract update from scheduled collection"
-          git pull --rebase origin master && git push origin HEAD:master
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(data): reddit extract update (${{ matrix.sub }})"
+          for i in 1 2 3 4 5 6; do git pull --rebase origin master && git push origin HEAD:master && exit 0; sleep $((i*15)); done; exit 1

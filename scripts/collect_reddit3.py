@@ -16,8 +16,8 @@ END = 1793750400  # 2026-11-04 00:00 UTC, fixed so cache names stay stable
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data', 'raw', 'reddit')
 YEARLY = {'econmonitor', 'SecurityAnalysis', 'quant', 'finance'}  # under ~1M comments
 FIELDS = {'comments': 'id,author,body,created_utc,link_id,parent_id,score', 'posts': 'id,author,title,url,selftext,created_utc,score'}
-_m = os.path.join(ROOT, '..', '..', 'reddit_extract', 'windows_done.txt')
-DONE = set(open(_m).read().split()) if os.path.exists(_m) else set()  # windows already compacted into the committed extract
+import glob
+DONE = {w for f in glob.glob(os.path.join(ROOT, '..', '..', 'reddit_extract', 'done', '*.txt')) for w in open(f).read().split()}  # windows already compacted into the committed extract
 def log(*a): print(dt.datetime.utcnow().strftime('%H:%M:%S'), *a, flush=True)
 
 def call(ep, params):
