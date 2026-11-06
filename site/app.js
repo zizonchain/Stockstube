@@ -88,7 +88,6 @@ function about() {
   <p>A video needs at least two different people recommending it. Bots, critical mentions and people linking their own channels do not count. Duplicate uploads of the same talk are merged. Titles are plain labels written from the video and the comments, not the uploader's title.</p>
   <h2>Sources</h2><table>${META.sources.map(s => `<tr><td>${esc(s[0])}</td><td>${s[1].toLocaleString()} mentions</td></tr>`).join('')}</table>
   <p>${META.entries.toLocaleString()} videos listed. Data built ${esc(META.built)}.</p>
-  <h2>Data</h2><p><a href="data/stockstube-data.zip">Download the data</a> (ranked list, videos, mentions with links and short excerpts; usernames replaced by hashed ids).</p>
   <h2>Credit</h2><p>The idea and the approach come from <a href="https://hackertube.org">HackerTube</a> by Andrej Karpathy.</p>
   <p>These are videos community members recommended. They are not endorsements and not investment advice.</p>
   <p>Your watch history, saved and hidden videos stay in this browser. There are no accounts and no tracking.</p></div>`;
