@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       max-parallel: 6
       matrix:
-        sub: [Bogleheads, StockMarket, financialindependence, investing, stocks, small]
+        sub: [Bogleheads, financialindependence, investing]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -33,11 +33,9 @@ jobs:
             reddit-raw-
       - name: collect (one subreddit per runner, stops itself before the job limit)
         run: |
-          if [ "${{ matrix.sub }}" = small ]; then SUBS="econmonitor SecurityAnalysis quant finance ValueInvesting dividends"; else SUBS="${{ matrix.sub }}"; fi
+          SUBS="${{ matrix.sub }}"
           echo "SUBS=$SUBS" >> "$GITHUB_ENV"
-          timeout 90m python3 -I scripts/collect_reddit3.py posts $SUBS || true
-          # r/stocks and r/StockMarket: comments with YouTube links are near zero (links are mostly removed there), so posts only
-          case "${{ matrix.sub }}" in stocks|StockMarket) echo "posts only";; *) timeout 230m python3 -I scripts/collect_reddit3.py comments $SUBS || true;; esac
+          timeout 320m python3 -I scripts/collect_reddit3.py comments $SUBS || true
       - name: compact
         if: always()
         run: python3 -I scripts/compact_reddit.py $SUBS
