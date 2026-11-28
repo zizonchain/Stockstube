@@ -61,7 +61,7 @@ async function home(tab) {
   else if (tab === 'saved') { const s = saved(), m = new Map([...CUR.playlists.flatMap(p => p.items), ...CUR.picks, ...CUR.legends, ...ALL].map(v => [v.i, v])); list = s.map(id => m.get(id)).filter(Boolean) }
   else list = ALL.slice();
   list = applyFilters(list);
-  if (['top', 'deep', 'durable', 'longs'].includes(tab)) list = diversify(list);
+  if (['top', 'deep', 'durable', 'longs', 'red'].includes(tab)) list = diversify(list);
   const decs = META.decades.map(d => [d, d + 's']), coms = META.communities.map(c => [c[0], `${c[0]} (${c[1]})`]);
   app.innerHTML = `${nav(tab)}
   <div class="filters">${opt('cat', 'Category', META.categories.map(c => [c, c]))}${opt('dec', 'Decade of event', decs)}${opt('com', 'Community', coms)}${opt('len', 'Length', [['s', 'Under 20 min'], ['m', '20 to 60 min'], ['l', 'Over 60 min']])}</div>
