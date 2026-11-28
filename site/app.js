@@ -69,7 +69,15 @@ async function home(tab) {
   app.querySelectorAll('select').forEach(s => s.onchange = () => { state[s.dataset.f] = s.value; shown = 60; route() });
   const m = $('#more'); if (m) m.onclick = () => { shown += 120; route() };
 }
-function nav(tab) { return `<nav class="tabs">${TABS.map(([k, l]) => `<a href="#/${k}" class="t-${k}${k === tab ? ' on' : ''}">${l}</a>`).join('')}</nav>` }
+// The tab row lives outside #app and is built once, so switching tabs never resets its sideways scroll.
+function nav(tab) {
+  const el = $('#tabs'); el.parentElement.hidden = !tab;
+  if (!el.children.length) el.innerHTML = TABS.map(([k, l]) => `<a href="#/${k}" class="t-${k}">${l}</a>`).join('');
+  el.querySelectorAll('a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#/' + tab));
+  const on = el.querySelector('a.on');
+  if (on && (on.offsetLeft < el.scrollLeft || on.offsetLeft + on.offsetWidth > el.scrollLeft + el.clientWidth)) el.scrollLeft = on.offsetLeft - 16;
+  return '';
+}
 function playlists() {
   app.innerHTML = `${nav('playlists')}<div class="grid">${CUR.playlists.map(p => `<a class="card" href="#/pl/${p.id}"><div class="thumb">${p.items[0] ? thumb(p.items[0].i) : ''}<span class="dur">${p.items.length} videos</span></div><h3>${esc(p.title)}</h3><div class="ev">${esc(p.note)}</div></a>`).join('')}</div>` }
 function playlist(id) {
@@ -112,10 +120,10 @@ function about() {
 let qt; $('#q').addEventListener('input', e => { clearTimeout(qt); qt = setTimeout(() => { state.q = e.target.value; shown = 60; const h = location.hash.slice(2).split('?')[0]; if (state.q && !['top', 'deep', 'durable', 'longs', 'red'].includes(h)) location.hash = '#/top'; else route() }, 150) });
 async function route() {
   const h = location.hash.slice(2).split('?')[0];
-  if (h.startsWith('v/')) return video(h.slice(2));
+  if (h.startsWith('v/')) { nav(null); return video(h.slice(2)) }
   if (h.startsWith('pl/')) return playlist(h.slice(3));
   document.title = 'StocksTube';
-  if (h === 'about') return about();
+  if (h === 'about') { nav(null); return about() }
   return home(TABS.some(t => t[0] === h) ? h : 'red');
 }
 window.addEventListener('hashchange', route);

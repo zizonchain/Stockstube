@@ -45,3 +45,4 @@ a{color:var(--acc)}.empty{color:var(--sub);padding:40px 0;text-align:center}
 .tabs .t-deep:active,.tabs .t-durable:active,.tabs .t-longs:active{transform:scale(.97);transition:transform .15s cubic-bezier(.25,.46,.45,.94)}
 .chip.ep{background:var(--gold);color:#3d2600}
 .thumb .num{position:absolute;left:8px;top:8px;min-width:26px;height:26px;padding:0 6px;border-radius:999px;background:rgba(0,0,0,.72);color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+.tabwrap{max-width:1280px;margin:0 auto;padding:12px 16px 0}.tabwrap[hidden]{display:none}.tabwrap .tabs{margin:0;scrollbar-width:none}.tabwrap .tabs::-webkit-scrollbar{display:none}
