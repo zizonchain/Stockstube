@@ -49,7 +49,7 @@ for f in glob.glob(f'{D}/labels/stance_*.tsv'):
         if len(p) == 3 and p[2] in 'RNXJ': STANCE[p[0]] = p[2]
 M['stance'] = (M.source + ':' + M.item_id.astype(str)).map(STANCE).fillna('?')
 M['critical'] = M['critical'] | (M.stance == 'X')
-NOTREC = M.stance.isin(['N', 'J'])
+NOTREC = M.stance.isin(['N', 'J']) & (M.kind_item != 'post')  # posting a video as a link post counts as recommending it
 # self-promotion: username ~ channel name
 ch = V['channel'].to_dict()
 def selfpromo(a, v):

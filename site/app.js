@@ -2,7 +2,7 @@
 const $ = s => document.querySelector(s), app = $('#app');
 const LS = {get(k, d) { try { return JSON.parse(localStorage.getItem('st_' + k)) ?? d } catch (e) { return d } },
   set(k, v) { try { localStorage.setItem('st_' + k, JSON.stringify(v)) } catch (e) {} }};
-let ALL = null, META = null, CUR = {legends: [], picks: [], playlists: []}, full = false;
+let ALL = null, META = null, CUR = {red: [], legends: [], picks: [], playlists: []}, full = false;
 const state = {cat: '', dec: '', com: '', len: '', q: ''};
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 const fmtDur = s => { if (!s) return ''; const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = s % 60; return (h ? h + ':' + String(m).padStart(2, '0') : m) + ':' + String(x).padStart(2, '0') };
@@ -53,7 +53,7 @@ async function home(tab) {
   if (tab === 'foryou') { list = await forYou(); if (!list || !list.length) { list = ALL.slice(); note = watched().length ? '' : '' } }
   else if (tab === 'deep') list = ALL.filter(v => v.r >= 3 && v.v < 250000).sort((a, b) => b.dc - a.dc);
   else if (tab === 'durable') list = ALL.filter(v => v.ny >= 5);
-  else if (tab === 'red') list = ALL.filter(v => v.rd);
+  else if (tab === 'red') list = (CUR.red && CUR.red.length) ? CUR.red.slice() : ALL.filter(v => v.rd);
   else if (tab === 'longs') list = ALL.filter(v => v.d >= 3600);
   else if (tab === 'legends') list = CUR.legends.slice();
   else if (tab === 'picks') list = CUR.picks.slice();
