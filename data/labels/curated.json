@@ -1,0 +1,41 @@
+{
+  "note": "Editorial layer, chosen by judgment and labelled as such on the site. It never changes the ranked tabs.",
+  "legends": ["2MHIcabnjrA","2a9Lx9J8uSs","REhg_bv7srM","T6HHwOoq9M4","UKw_NjWtg5w","pqzcCfUglws","RFxXl9eAWV4","HS8neXkNnhw","L6Cy7UwsRPQ","72Pq5zKEi_g","myu4Nv0pt0U","JVvwCkB-JLE","J1DFMXL2kXE","gl6Im-LTuZg","k6ra5POdsYg","LFWj0ps9DqA","WXQBUSryfdM","Xbs5e5pcVYI","-5Weeox0Xus","fqErgJatCZU","-7sWLIybWnQ","QNznD9hMEh0","U5kIdtMJGc8","PHe0bXAIuk0","oCaCrWzFPYY","wHsEt6MchhE","YRhnX_JAbC8","bZfPJCAVQg0","O38I7QIc_eQ","1CLhqjOzoyE","znmQ7oMiQrM"],
+  "picks": [
+    {"i": "RFxXl9eAWV4", "t": "Charlie Munger · Advice on investing and the life choices that build wealth", "c": "Interview or conversation", "why": "On De Caigny Capital's list of talks the best investors watch. Munger at his most compact."},
+    {"i": "w3xAPl2ikHE", "t": "Arini Capital pitches the San Bernardino County pension board · 2026", "c": "Talk or speech", "why": "A credit hedge fund pitching a public pension fund, recorded at a public meeting. A rare look at how institutional money gets allocated."}
+  ],
+  "playlists": [
+    {"id": "druckenmiller", "title": "Stan Druckenmiller", "note": "Talks and interviews across three decades, in the order of a playlist the maintainer picked.",
+     "videos": [
+      ["X0Mcw5iGvcI", "Stan Druckenmiller with Geoffrey Canada · Generational equity"],
+      ["hf0wWavJz7c", "Stan Druckenmiller · His investing career and Duquesne Capital"],
+      ["G-MlrpoMig0", "Stan Druckenmiller · Monetary policy and markets"],
+      ["r7kMSqgruOY", "Stan Druckenmiller · Economic Club of New York · 2019"],
+      ["XlgBS6ZB5gI", "Stan Druckenmiller · Full CNBC appearance"],
+      ["S_x0n5BS1Pw", "Stan Druckenmiller and Paul Tudor Jones · Robin Hood conference · 2016"],
+      ["7njzXBzYnNI", "A conversation with Stan Druckenmiller"],
+      ["9kH01CNISeQ", "Stan Druckenmiller on the economy, stocks, bonds and the Fed"],
+      ["rq2lGZyW2yA", "Stan Druckenmiller · USC Marshall keynote · 2021"],
+      ["-7sWLIybWnQ", "Stan Druckenmiller with John Collison · Sohn · 2022"],
+      ["0sddHG0D0Y4", "Stan Druckenmiller and Alex Karp · Global instability"],
+      ["WNdu2u8wRxY", "Stan Druckenmiller · His view of the future"],
+      ["IMeuzvzToPQ", "Stan Druckenmiller with Joe Kernen · CNBC Delivering Alpha"],
+      ["dXxWajc-tgI", "Stan Druckenmiller · Norges Bank investment conference · 2023"],
+      ["SRPMHinrFKQ", "Stan Druckenmiller · USC Marshall keynote · 2023"],
+      ["bMAm2S1M_IU", "Stan Druckenmiller with Kiril Sokoloff · Sohn · 2023"],
+      ["53wThFFuOqU", "Stan Druckenmiller on AI in his long portfolio"],
+      ["-4NuOAfZjHo", "Stan Druckenmiller on Fed policy, the election, bonds and Nvidia"],
+      ["fqErgJatCZU", "Stan Druckenmiller · Charlie Rose · 2013"],
+      ["-5Weeox0Xus", "Stan Druckenmiller · In Good Company · Norges Bank"],
+      ["AJqLuMo9GPY", "Stan Druckenmiller · Interview · 2009"],
+      ["z_pk4eBDaLA", "Stan Druckenmiller · Hard lessons: invest, then investigate"],
+      ["wp-JMjjl0oU", "Stan Druckenmiller on AI · bonus clip"],
+      ["AmcEy6Tbf-4", "Stan Druckenmiller · Pick one · bonus clip"],
+      ["FJwBpWSSgSg", "Stan Druckenmiller · I say economy, you say · bonus clip"],
+      ["6r3D-CMJkuI", "Stan Druckenmiller · Why he is not playing right now · TomorrowX"]
+     ]},
+    {"id": "explainers", "title": "Explainers that make it click", "note": "Short visual explanations of one big idea each. Start here if a term in a lecture lost you.",
+     "videos": [["PHe0bXAIuk0"],["bx_LWm6_6tA"],["PTUY16CkS-k"],["K3lP3BhvnSo"],["xiiHjrewXNI"],["25_WjiZnvQk"],["C8xAXJx9WJ8"],["A5w-dEgIU1M"],["fd_emLLzJnk"],["Tp9MRVGgIZ0"]]}
+  ]
+}
