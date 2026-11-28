@@ -41,6 +41,15 @@ M = M[~M.author.map(isbot)]
 M['who'] = M.source + ':' + M.author
 crit = {(l['id'], i) for l in labels.values() for i in l.get('critical_items', [])}
 M['critical'] = [(v, i) in crit for v, i in zip(M.video_id, M.item_id)]
+# stance of each mention, read in session (data/labels/stance_*.tsv): R recommend, N neutral, X critical, J joke. Unread mentions count as before.
+STANCE = {}
+for f in glob.glob(f'{D}/labels/stance_*.tsv'):
+    for l in open(f):
+        p = l.rstrip('\n').split('\t')
+        if len(p) == 3 and p[2] in 'RNXJ': STANCE[p[0]] = p[2]
+M['stance'] = (M.source + ':' + M.item_id.astype(str)).map(STANCE).fillna('?')
+M['critical'] = M['critical'] | (M.stance == 'X')
+NOTREC = M.stance.isin(['N', 'J']) & (M.kind_item != 'post')  # posting a video as a link post counts as recommending it
 # self-promotion: username ~ channel name
 ch = V['channel'].to_dict()
 def selfpromo(a, v):
@@ -56,7 +65,7 @@ heavy = set(g[g >= 3].index)
 whocount = M.groupby('video_id').who.nunique()
 M['self'] = M['self'].values | pd.Series([((w, c) in heavy and whocount.get(v, 0) <= 2) for w, c, v in zip(M.who, M.channel, M.video_id)], index=M.index).values
 M['flag_self'] = [(labels.get(v, {}).get('flags') or {}).get('self_promotion', False) and w in (labels.get(v, {}).get('self_whos') or [w]) for v, w in zip(M.video_id, M.who)]
-REC = M[~M.critical & ~M.self & ~M.flag_self & ~M.is_short]
+REC = M[~M.critical & ~NOTREC & ~M.self & ~M.flag_self & ~M.is_short]
 
 # ---- relevance: labels first, then rules for unlabelled
 KW = re.compile(r'\b(invest\w*|stock(s|market)?|equit(y|ies)|buffett|munger|berkshire|damodaran|valuation|value investing|hedge fund|private equity|portfolio|dividend\w*|index fund|bogle|vanguard|bond(s)?|treasur(y|ies)|federal reserve|the fed\b|interest rates?|inflation|recession|econom\w*|financ\w*|wall street|bank(s|ing)?|capital(ism)?|market(s)?|trading|trader|crash|bubble|money|wealth|retire\w*|accounting|balance sheet|earnings|10-k|annual meeting|shareholder\w*|ackman|dalio|soros|druckenmiller|klarman|howard marks|peter lynch|graham|thorp|simons|renaissance|asness|greenblatt|pabrai|li lu|chanos|minsky|keynes|hayek|friedman|monetary|fiscal|debt|credit|currency|gold|bitcoin|crypto\w*|real estate|mortgage|tax(es)?|fire movement|frugal|budget\w*)\b', re.I)
@@ -184,7 +193,7 @@ STRICT = {l.strip() for l in open(f'{D}/labels/strict_out.txt') if l.strip() and
 E = E[~E.index.isin(STRICT)]  # strict investing-only rule, see DECISIONS.md  # film clips, pitches and gags people link in passing; see DECISIONS.md
 for v, r in E.iterrows():
     idx.append(dict(i=v, t=r.ct, d=int(r.duration), c=r.catg, r=int(r.recs), n=int(r.comms), y=[int(r.y0), int(r.y1)], ny=int(r.years), nm=int(r.months), s=round(r.score, 3), dc=round(r.deep, 3),
-                    ev=L(v).get('event_year'), v=int(r.views), sp=', '.join(L(v).get('speakers') or []), e=L(v).get('event'), cm=r.cmlist, ot=r.title, u=int(str(r.uploaded)[:4]) if str(r.uploaded)[:4].isdigit() else None, **({'rd': 1} if v in RED else {})))
+                    ev=L(v).get('event_year'), v=int(r.views), sp=', '.join(L(v).get('speakers') or []), e=L(v).get('event'), cm=r.cmlist, ot=r.title, ch=r.channel, u=int(str(r.uploaded)[:4]) if str(r.uploaded)[:4].isdigit() else None, **({'rd': 1} if v in RED else {})))
 byid = {x['i']: x for x in idx}
 childs = collections.defaultdict(list)
 for c, (p, k) in parent.items(): childs[p].append((c, k))
